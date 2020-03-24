@@ -1,0 +1,3 @@
+/run/printProgress 10000
+/analysis/setFileName hist
+/run/beamOn 1000000

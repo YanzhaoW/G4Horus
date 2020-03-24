@@ -1,0 +1,640 @@
+Using Geant4 Version 10.5.0 in /data/jmayer/software/geant4.10.05
+-- Geant4 Version:          10.5.0
+-- Geant4 Include Dir:      /data/jmayer/software/geant4.10.05/include/Geant4;/usr/include;/usr/include/QtCore;/usr/include/QtGui;/usr/include/QtOpenGL
+-- Geant4 Definitions:      -DG4_STORE_TRAJECTORY;-DG4VERBOSE;-DG4UI_USE;-DG4VIS_USE;-DG4MULTITHREADED;-DG4UI_USE_TCSH;-DG4INTY_USE_QT;-DG4UI_USE_QT;-DG4VIS_USE_OPENGLQT;-DG4INTY_USE_XT;-DG4VIS_USE_OPENGLX;-DG4VIS_USE_OPENGL
+-- Geant4 Build Type:       Release
+-- CXX_FLAGS                -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -Wno-variadic-macros -Wshadow -pipe -DG4USE_STD11 -pthread -ftls-model=initial-exec -std=c++11
+-- CXX_FLAGS_DEBUG          -g -DG4FPE_DEBUG
+-- CXX_FLAGS_RELEASE        -O3 -DNDEBUG -fno-trapping-math -ftree-vectorize -fno-math-errno -march=native
+-- CXX_FLAGS_RELWITHDEBINFO -O2 -g
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /data/ywang/Home/Geant4/G4Horus/build
+[ 24%] Built target G4HorusDetectors
+[ 51%] Built target G4HorusGeometries
+[ 56%] Built target G4HorusConstruction
+[ 68%] Built target G4HorusSoco
+[ 95%] Built target G4HorusActions
+[100%] Built target G4Horus
+
+**************************************************************
+ Geant4 version Name: geant4-10-05 [MT]   (7-December-2018)
+  << in Multi-threaded mode >> 
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+<<< Geant4 Physics List simulation engine: Shielding
+Output: Using Root
+CADElement: Meshing SonicV3-Al-Chamber(../cad/SonicV3-Al-Chamber.stl) ...
+CADElement: Meshing SonicV3-Al-ChamberCap(../cad/SonicV3-Al-ChamberCap.stl) ...
+Checking overlaps for volume PIPS_Si00_front ... OK! 
+Checking overlaps for volume PIPS_Si00_side ... OK! 
+Checking overlaps for volume PIPS_Si00_back ... OK! 
+Checking overlaps for volume PIPS_Si00_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si00_dead_back ... OK! 
+Checking overlaps for volume Si00 ... OK! 
+Checking overlaps for volume PIPS_Si01_front ... OK! 
+Checking overlaps for volume PIPS_Si01_side ... OK! 
+Checking overlaps for volume PIPS_Si01_back ... OK! 
+Checking overlaps for volume PIPS_Si01_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si01_dead_back ... OK! 
+Checking overlaps for volume Si01 ... OK! 
+Checking overlaps for volume PIPS_Si02_front ... OK! 
+Checking overlaps for volume PIPS_Si02_side ... OK! 
+Checking overlaps for volume PIPS_Si02_back ... OK! 
+Checking overlaps for volume PIPS_Si02_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si02_dead_back ... OK! 
+Checking overlaps for volume Si02 ... OK! 
+Checking overlaps for volume PIPS_Si03_front ... OK! 
+Checking overlaps for volume PIPS_Si03_side ... OK! 
+Checking overlaps for volume PIPS_Si03_back ... OK! 
+Checking overlaps for volume PIPS_Si03_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si03_dead_back ... OK! 
+Checking overlaps for volume Si03 ... OK! 
+Checking overlaps for volume PIPS_Si04_front ... OK! 
+Checking overlaps for volume PIPS_Si04_side ... OK! 
+Checking overlaps for volume PIPS_Si04_back ... OK! 
+Checking overlaps for volume PIPS_Si04_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si04_dead_back ... OK! 
+Checking overlaps for volume Si04 ... OK! 
+Checking overlaps for volume PIPS_Si05_front ... OK! 
+Checking overlaps for volume PIPS_Si05_side ... OK! 
+Checking overlaps for volume PIPS_Si05_back ... OK! 
+Checking overlaps for volume PIPS_Si05_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si05_dead_back ... OK! 
+Checking overlaps for volume Si05 ... OK! 
+Checking overlaps for volume PIPS_Si06_front ... OK! 
+Checking overlaps for volume PIPS_Si06_side ... OK! 
+Checking overlaps for volume PIPS_Si06_back ... OK! 
+Checking overlaps for volume PIPS_Si06_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si06_dead_back ... OK! 
+Checking overlaps for volume Si06 ... OK! 
+Checking overlaps for volume PIPS_Si07_front ... OK! 
+Checking overlaps for volume PIPS_Si07_side ... OK! 
+Checking overlaps for volume PIPS_Si07_back ... OK! 
+Checking overlaps for volume PIPS_Si07_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si07_dead_back ... OK! 
+Checking overlaps for volume Si07 ... OK! 
+Checking overlaps for volume PIPS_Si08_front ... OK! 
+Checking overlaps for volume PIPS_Si08_side ... OK! 
+Checking overlaps for volume PIPS_Si08_back ... OK! 
+Checking overlaps for volume PIPS_Si08_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si08_dead_back ... OK! 
+Checking overlaps for volume Si08 ... OK! 
+Checking overlaps for volume PIPS_Si09_front ... OK! 
+Checking overlaps for volume PIPS_Si09_side ... OK! 
+Checking overlaps for volume PIPS_Si09_back ... OK! 
+Checking overlaps for volume PIPS_Si09_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si09_dead_back ... OK! 
+Checking overlaps for volume Si09 ... OK! 
+Checking overlaps for volume PIPS_Si10_front ... OK! 
+Checking overlaps for volume PIPS_Si10_side ... OK! 
+Checking overlaps for volume PIPS_Si10_back ... OK! 
+Checking overlaps for volume PIPS_Si10_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si10_dead_back ... OK! 
+Checking overlaps for volume Si10 ... OK! 
+Checking overlaps for volume PIPS_Si11_front ... OK! 
+Checking overlaps for volume PIPS_Si11_side ... OK! 
+Checking overlaps for volume PIPS_Si11_back ... OK! 
+Checking overlaps for volume PIPS_Si11_active ... OK! 
+Checking overlaps for volume Dead_front ... OK! 
+Checking overlaps for volume PIPS_Si11_dead_back ... OK! 
+Checking overlaps for volume Si11 ... OK! 
+Id: elek - crystal volume: 199.869cm3
+Id: elek - expected volume: 0cm3
+Checking overlaps for volume Ge00 ... OK! 
+Checking overlaps for volume BGO00 ... OK! 
+Id: 609502 - crystal volume: 318.81cm3
+Id: 609502 - expected volume: 306cm3
+Checking overlaps for volume Ge01_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge01_filter_G4_Pb ... OK! 
+Checking overlaps for volume Ge01 ... OK! 
+Id: 73954 - crystal volume: 304.203cm3
+Id: 73954 - expected volume: 304cm3
+Checking overlaps for volume Ge02_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge02 ... OK! 
+HPGe detector Ge03 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge03 with Id: adjusted_capsule - crystal volume:  191.119cm3 = 1017.33g
+HPGe: Ge03 with Id: adjusted_capsule - expected volume: 0cm3 = 0g
+HPGe: Ge03 with Id: adjusted_capsule - capsule mass:  56.8464g
+Checking overlaps for volume Ge03 ... OK! 
+Checking overlaps for volume BGO03_BGO_filter_G4_Cu ... OK! 
+Checking overlaps for volume BGO03 ... OK! 
+HPGe detector Ge04 with inactive layer has 7.96611 mm of inactive material around and 3.53287mm in front of cryo-finger for 4.55% of efficiency reduction.
+HPGe: Ge04 with Id: 73209 - crystal volume:  257.783cm3 = 1372.18g
+HPGe: Ge04 with Id: 73209 - expected volume: 299.455cm3 = 1594g
+HPGe: Ge04 with Id: 73209 - capsule mass:  56.78g
+Checking overlaps for volume Ge04_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge04 ... OK! 
+HPGe detector Ge05 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge05 with Id: 72827 - crystal volume:  269.802cm3 = 1436.16g
+HPGe: Ge05 with Id: 72827 - expected volume: 299.962cm3 = 1596.7g
+HPGe: Ge05 with Id: 72827 - capsule mass:  56.9382g
+Checking overlaps for volume Ge05_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge05 ... OK! 
+HPGe detector Ge06 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge06 with Id: adjusted_capsule - crystal volume:  191.175cm3 = 1017.62g
+HPGe: Ge06 with Id: adjusted_capsule - expected volume: 0cm3 = 0g
+HPGe: Ge06 with Id: adjusted_capsule - capsule mass:  57.0978g
+Checking overlaps for volume Ge06 ... OK! 
+Checking overlaps for volume BGO06_BGO_filter_G4_Cu ... OK! 
+Checking overlaps for volume BGO06 ... OK! 
+HPGe detector Ge07 with inactive layer has 10.6931 mm of inactive material around and 5.60262mm in front of cryo-finger for 10.57% of efficiency reduction.
+HPGe: Ge07 with Id: 72811 - crystal volume:  250.413cm3 = 1332.95g
+HPGe: Ge07 with Id: 72811 - expected volume: 298.704cm3 = 1590g
+HPGe: Ge07 with Id: 72811 - capsule mass:  56.8379g
+Checking overlaps for volume Ge07 ... OK! 
+Checking overlaps for volume BGO07_BGO_filter_G4_Cu ... OK! 
+Checking overlaps for volume BGO07 ... OK! 
+HPGe detector Ge08 with inactive layer has 10.701 mm of inactive material around and 5.60758mm in front of cryo-finger for 10.59% of efficiency reduction.
+HPGe: Ge08 with Id: 73002 - crystal volume:  251.134cm3 = 1336.79g
+HPGe: Ge08 with Id: 73002 - expected volume: 287.62cm3 = 1531g
+HPGe: Ge08 with Id: 73002 - capsule mass:  57.4155g
+Checking overlaps for volume Ge08 ... OK! 
+Checking overlaps for volume BGO08_BGO_filter_G4_Cu ... OK! 
+Checking overlaps for volume BGO08 ... OK! 
+HPGe detector Ge09 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge09 with Id: miniball_capsule - crystal volume:  269.956cm3 = 1436.97g
+HPGe: Ge09 with Id: miniball_capsule - expected volume: 0cm3 = 0g
+HPGe: Ge09 with Id: miniball_capsule - capsule mass:  57.1091g
+Checking overlaps for volume Ge09 ... OK! 
+Checking overlaps for volume BGO09_BGO_filter_G4_Cu ... OK! 
+Checking overlaps for volume BGO09 ... OK! 
+HPGe detector Ge10 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge10 with Id: miniball_capsule - crystal volume:  270.187cm3 = 1438.2g
+HPGe: Ge10 with Id: miniball_capsule - expected volume: 0cm3 = 0g
+HPGe: Ge10 with Id: miniball_capsule - capsule mass:  57.2588g
+Checking overlaps for volume Ge10_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge10 ... OK! 
+HPGe detector Ge11 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge11 with Id: 72397 - crystal volume:  270.246cm3 = 1438.52g
+HPGe: Ge11 with Id: 72397 - expected volume: 304.528cm3 = 1621g
+HPGe: Ge11 with Id: 72397 - capsule mass:  57.1345g
+Checking overlaps for volume Ge11_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge11 ... OK! 
+HPGe detector Ge12 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge12 with Id: 72442 - crystal volume:  269.874cm3 = 1436.54g
+HPGe: Ge12 with Id: 72442 - expected volume: 305.843cm3 = 1628g
+HPGe: Ge12 with Id: 72442 - capsule mass:  56.9664g
+Checking overlaps for volume Ge12_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge12 ... OK! 
+HPGe detector Ge13 without inactive layer was set up. 
+No inactive region was assigned due to efficiency being set to 100% or invalid parameters being given. 
+HPGe: Ge13 with Id: 72341 - crystal volume:  269.948cm3 = 1436.93g
+HPGe: Ge13 with Id: 72341 - expected volume: 300.582cm3 = 1600g
+HPGe: Ge13 with Id: 72341 - capsule mass:  57.7036g
+Checking overlaps for volume Ge13_filter_G4_Cu ... OK! 
+Checking overlaps for volume Ge13 ... OK! 
+
+ Shielding : threshold between BERT and FTFP is over the interval : 4 to 5 GeV
+
+/data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5
+@@@ G4ParticleHPInelastic instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic
+@@@ G4ParticleHPInelasticData instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
+=======================================================================
+======       Radioactive Decay Physics Parameters              ========
+=======================================================================
+Max life time                                     1.4427e+06 ps
+Internal e- conversion flag                       1
+Stored internal conversion coefficients           1
+Enable correlated gamma emission                  0
+Max 2J for sampling of angular correlations       10
+Atomic de-excitation enabled                      1
+Auger electron emission enabled                   1
+Auger cascade enabled                             1
+Check EM cuts disabled for atomic de-excitation   1
+Use Bearden atomic level energies                 0
+=======================================================================
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
+@@@ G4ParticleHPInelastic instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Inelastic
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /data/jmayer/software/geant4.10.05/share/Geant4-10.5.0/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
+G4WT0 > Output: Using Root
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Current available graphics systems are:
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateQt (OGLIQt, OGLI)
+OpenGLStoredQt (OGLSQt, OGL, OGLS)
+OpenGLImmediateX (OGLIX, OGLIQt_FALLBACK)
+OpenGLStoredX (OGLSX, OGLSQt_FALLBACK)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+Available UI session types: [ Qt, GAG, tcsh, csh ]
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 6 (Unknown request)
+  Resource id:  0x5e00060
+X Error: BadValue (integer parameter out of range for operation) 2
+  Extension:    155 (Uknown extension)
+  Minor opcode: 3 (Unknown request)
+  Resource id:  0x0
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: BadValue (integer parameter out of range for operation) 2
+  Extension:    155 (Uknown extension)
+  Minor opcode: 3 (Unknown request)
+  Resource id:  0x0
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e000b2
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLTempContext: Unable to create GL context.
+X Error: BadValue (integer parameter out of range for operation) 2
+  Extension:    155 (Uknown extension)
+  Minor opcode: 3 (Unknown request)
+  Resource id:  0x0
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e000b4
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLTempContext: Unable to create GL context.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadDrawable 172
+  Extension:    155 (Uknown extension)
+  Minor opcode: 11 (Unknown request)
+  Resource id:  0x5e0007e
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadDrawable 172
+  Extension:    155 (Uknown extension)
+  Minor opcode: 11 (Unknown request)
+  Resource id:  0x5e0007e
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+X Error: GLXBadDrawable 172
+  Extension:    155 (Uknown extension)
+  Minor opcode: 11 (Unknown request)
+  Resource id:  0x5e0007e
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 5 (Unknown request)
+  Resource id:  0x5e00060
+X Error: GLXBadContext 170
+  Extension:    155 (Uknown extension)
+  Minor opcode: 26 (Unknown request)
+  Resource id:  0x0
+QGLContext::makeCurrent(): Failed.
+Graphics systems deleted.
+Visualization Manager deleting...
+G4WT0 > /control/saveHistory 
+G4WT0 > /tracking/storeTrajectory 2
+G4WT0 > /gui/addIcon "Open macro file" open /control/execute
+G4WT0 > /gui/addIcon "Save viewer state" save /vis/viewer/save
+G4WT0 > /gui/addIcon "Move" move
+G4WT0 > /gui/addIcon "Pick" pick
+G4WT0 > /gui/addIcon "Zoom out" zoom_out
+G4WT0 > /gui/addIcon "Zoom in" zoom_in
+G4WT0 > /gui/addIcon "Rotate" rotate
+G4WT0 > /gui/addIcon "Hidden line removal" hidden_line_removal
+G4WT0 > /gui/addIcon "Hidden line and hidden surface removal" hidden_line_and_surface_removal
+G4WT0 > /gui/addIcon "Surfaces" solid
+G4WT0 > /gui/addIcon "Wireframe" wireframe
+G4WT0 > /gui/addIcon "Perspective" perspective
+G4WT0 > /gui/addIcon "Orthographic" ortho
+G4WT0 > /run/printProgress 100
+G4WT0 > /analysis/setFileName tmp
+G4WT0 > Set file name: tmp
+G4WT0 > /gun/energy 1 MeV
+G4WT0 > /gun/particle gamma

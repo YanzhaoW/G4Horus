@@ -6,8 +6,10 @@ add_library(${PROJECT_NAME}
             EventActionNtuple.cc
             EventActionSoco.cc
             PrimaryGeneratorAction.cc
+            PrimaryGeneratorActionCascade.cc
             PrimaryGeneratorActionScattering.cc
             PrimaryGeneratorScattering.cc
+            PrimaryGeneratorCascade.cc
             RunActionHistogram.cc
             RunActionNtuple.cc
             RunActionSoco.cc)

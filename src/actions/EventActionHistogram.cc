@@ -45,6 +45,10 @@ void EventActionHistogram::EndOfEventAction(const G4Event* event)
     const size_t ndets = detectors.size();
     for (size_t i = 0; i < ndets; i++) {
         const G4double edep = GetSum(GetHitsCollection(fHitCollectionIDs.at(i), event));
+        // if( edep >0.7 ) {
+        //     G4cout << "detector: " << i << "\t" << "energy: "<< edep << G4endl;
+        //     analysisManager->FillH1(8, i);
+        // }
         analysisManager->FillH1(i, edep);
     }
 }

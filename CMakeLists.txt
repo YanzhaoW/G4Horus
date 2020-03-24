@@ -10,6 +10,7 @@ message(STATUS "Geant4 Version:          ${Geant4_VERSION}")
 message(STATUS "Geant4 Include Dir:      ${Geant4_INCLUDE_DIRS}")
 message(STATUS "Geant4 Definitions:      ${Geant4_DEFINITIONS}")
 message(STATUS "Geant4 Build Type:       ${Geant4_BUILD_TYPE}")
+message(STATUS "Geant4 Library Location: ${Geant4_LIBRARIES}")
 # ... so we add our flags to that
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 message(STATUS "CXX_FLAGS                ${CMAKE_CXX_FLAGS}")

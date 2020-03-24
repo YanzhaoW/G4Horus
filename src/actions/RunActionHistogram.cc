@@ -16,6 +16,7 @@ RunActionHistogram::RunActionHistogram()
     for (auto& det : detectors) {
         analysis_manager->CreateH1(det, "Edep in " + det, 20000, 0., 20. * MeV); // Always use 1keV/bin!
     }
+    analysis_manager->CreateH1("DetDis","DetDis",8,-0.5,7.5);
 }
 
 RunActionHistogram::~RunActionHistogram()

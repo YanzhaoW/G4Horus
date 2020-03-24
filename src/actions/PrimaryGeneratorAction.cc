@@ -12,8 +12,10 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 }
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
-{
+{   
+
     mom.setRThetaPhi(1., pi * G4UniformRand(), twopi * G4UniformRand());
+    // G4cout << "Theta: " << mom.getTheta() << "\tPhi: " << mom.getPhi() << G4endl;
     gun.SetParticleMomentumDirection(mom);
     gun.GeneratePrimaryVertex(event);
 }

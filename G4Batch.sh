@@ -28,6 +28,9 @@ echo "CAD Dir: ${G4HORUS_CAD_DIR}"
 ## Create output dir and run full simulation
 mkdir -p out
 cd out
+
+rm -r *
+
 TS=$(date +%Y-%m-%dT%H-%M-%S)
 mkdir ${TS}
 cd ${TS}
