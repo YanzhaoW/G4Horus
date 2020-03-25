@@ -7,6 +7,8 @@
 #include "RunActionHistogram.hh"
 #include "RunActionNtuple.hh"
 #include "RunActionSoco.hh"
+#include "PrimaryGeneratorActionCascade.hh"
+#include "PrimaryGeneratorCascade.hh"
 
 // Build() and BuildForMaster() have to be able to create new instances of Run and Event Actions.
 // To be able to choose different actions, create creators (~factories) for the different types.
@@ -39,8 +41,9 @@ void ActionInitialization::BuildForMaster() const
 
 void ActionInitialization::Build() const
 {   
-    SetUserAction(new PrimaryGeneratorAction);
-    // SetUserAction(new PrimaryGeneratorActionScattering);
+    
+    // SetUserAction(new PrimaryGeneratorAction);
+    SetUserAction(new PrimaryGeneratorActionCascade());
     // SetUserAction(new PrimaryGeneratorActionScattering);
     SetUserAction(fRunActionCreator());
     SetUserAction(fEventActionCreator());

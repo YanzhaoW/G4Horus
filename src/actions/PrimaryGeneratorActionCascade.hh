@@ -13,4 +13,5 @@ class PrimaryGeneratorActionCascade : public G4VUserPrimaryGeneratorAction {
 
   private:
     PrimaryGeneratorCascade fAct;
+    bool flag = true;
 };

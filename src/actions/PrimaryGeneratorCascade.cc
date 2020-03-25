@@ -17,7 +17,7 @@ void PrimaryGeneratorCascade::GeneratePrimaryVertex(G4Event *event){
         auto gamma = new G4PrimaryParticle(fGamma);
         gamma->SetMomentumDirection(G4RandomDirection());
         // gamma->SetKineticEnergy(decay.energy);
-        gamma->SetKineticEnergy(decay);
+        gamma->SetKineticEnergy(decay.energy);
         auto gammaVertex = new G4PrimaryVertex();
         gammaVertex->SetPrimary(gamma);
         event->AddPrimaryVertex(gammaVertex);

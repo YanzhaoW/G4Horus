@@ -3,6 +3,7 @@
 #include "G4VUserActionInitialization.hh"
 #include <map>
 #include <string>
+#include "PrimaryGeneratorCascade.hh"
 
 class ActionInitialization : public G4VUserActionInitialization {
   public:
