@@ -22,6 +22,7 @@ HPGe::Clover::Clover(const _spec& spec, const std::string& name)
     //rot->rotateX(-90. * deg);
     new G4PVPlacement(nullptr, G4ThreeVector(), this->BuildHull(), "HPGe_" + name + "_hull", fDetectorLV, false, 0, fSpec.check_overlaps);
 
+    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, -(fLength / 2 - fSpec.hull.endcap_thickness / 2)), this->BuildHullFront(), "HPGe_" + name + "_hull_front", fDetectorLV, false, 0, fSpec.check_overlaps);
     // TODO: Move that out. Maybe some Variant / Union stuff? Or derived data storage classes
 
     fCloverSpec.teflonThickness = 0.19 * mm;

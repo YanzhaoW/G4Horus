@@ -8,27 +8,35 @@
 #include <string>
 #include <fstream>
 
-PrimaryGeneratorCascade::DecaySeq getDecays(){
-    PrimaryGeneratorCascade::DecaySeq decays(0);
+PrimaryGeneratorCascade::LevelScheme getScheme(){
+    PrimaryGeneratorCascade::LevelScheme scheme(0);
     std::ifstream myfile;
 
     std::string energy;
+    std::string ini_level;
+    std::string final_level;
     std::string intensity;
+
     
-    myfile.open("/data/ywang/Home/Geant4/G4Horus/scripts/list_cascade.txt");
+    myfile.open("/data/ywang/Home/Geant4/G4Horus/scripts/Decay_Scheme_Ir190_Q1954.txt");
     myfile >> energy;
+    myfile >> ini_level;
+    myfile >> final_level;
     myfile >> intensity;
     while(myfile.good()){
         myfile >> energy;
+        myfile >> ini_level;
+        myfile >> final_level;
         myfile >> intensity;
-        decays.push_back({stod(energy)*keV, stod(intensity)});
+        scheme.push_back({stod(energy)*keV, stod(intensity), ini_level, final_level});
     }
     myfile.close();
-    return decays;
+
+    return scheme;
 }
 
 PrimaryGeneratorActionCascade::PrimaryGeneratorActionCascade()
-:fAct(getDecays())
+:fAct(getScheme(), 557.95*keV)
 {
 }
 

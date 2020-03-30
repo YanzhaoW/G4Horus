@@ -9,21 +9,20 @@ class G4Event;
 
 class PrimaryGeneratorCascade : public G4VPrimaryGenerator {
   public:
-    struct Decay {
-        G4double energy;
-        G4double intensity;
-    };
-
-    using DecaySeq = std::vector<Decay>;
-    // using DecaySeq = std::vector<G4double>;
-
-    PrimaryGeneratorCascade(const DecaySeq&);
-    void GeneratePrimaryVertex(G4Event*) override;
-    DecaySeq getDecay() {
-      return fDecays;
-    }
+  struct Decay {
+    G4double energy;
+    G4double intensity;
+    std::string ini_level;
+    std::string final_level; 
+  };
+  using LevelScheme = std::vector<Decay>;
+  PrimaryGeneratorCascade(const LevelScheme&, const G4double&);
+  void GeneratePrimaryVertex(G4Event*) override;
+  void ParticleGun(G4Event*, G4double);
+  void Decay_UpDownward(G4Event *event, G4double E, std::string mode);
+  LevelScheme fLevelScheme;
 
   private:
-    DecaySeq fDecays;
-    const G4ParticleDefinition* fGamma;
+  const G4ParticleDefinition* fGamma;
+  G4double fEnergy;
 };
