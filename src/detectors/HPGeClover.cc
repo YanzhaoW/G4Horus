@@ -45,11 +45,11 @@ HPGe::Clover::Clover(const _spec& spec, const std::string& name)
     if (fSpec.id == "CloziB") {
         _cloverLeaf B0(baseLeaf);
         B0.name = "B0";
-        B0.allayerThickness = 1.5 * mm;
-        B0.crystalRadius = 28.75 * mm;
+        B0.allayerThickness = 1.4 * mm;
+        B0.crystalRadius = 23.6 * mm;
         B0.crystalLength = 59.5 * mm;
         B0.deadlayerThickness = 0.0003 * mm;
-        B0.distanceToEndcap = 16.0 * mm;
+        B0.distanceToEndcap = 15.0 * mm;
         fCloverSpec.crystals.push_back(B0);
 
         _cloverLeaf B1(baseLeaf);
@@ -63,37 +63,37 @@ HPGe::Clover::Clover(const _spec& spec, const std::string& name)
 
         _cloverLeaf B2(baseLeaf);
         B2.name = "B2";
-        B2.allayerThickness = 1.2 * mm; // 1.5
-        B2.crystalRadius = 28.55 * mm;
+        B2.allayerThickness = 0.5 * mm; // 1.5
+        B2.crystalRadius = 25.00 * mm;
         B2.crystalLength = 58.7 * mm;
         B2.deadlayerThickness = 0.0003 * mm;
-        B2.distanceToEndcap = 16.0 * mm;
+        B2.distanceToEndcap = 10.0 * mm;
         fCloverSpec.crystals.push_back(B2);
 
         _cloverLeaf B3(baseLeaf);
         B3.name = "B3";
-        B3.allayerThickness = 1.1 * mm; // 1.5
-        B3.crystalRadius = 28.60 * mm;
+        B3.allayerThickness = 2.9 * mm; // 1.5
+        B3.crystalRadius = 23.3 * mm;
         B3.crystalLength = 57.2 * mm;
         B3.deadlayerThickness = 0.0003 * mm;
-        B3.distanceToEndcap = 15.0 * mm;
+        B3.distanceToEndcap = 4.1 * mm;
         fCloverSpec.crystals.push_back(B3);
     }
 
     if (fSpec.id == "CloziA") {
         _cloverLeaf A0(baseLeaf);
         A0.name = "A0";
-        A0.allayerThickness = 0.8 * mm;
-        A0.crystalRadius = 28.40 * mm;
+        A0.allayerThickness = 2.1 * mm;
+        A0.crystalRadius = 26.4 * mm;
         A0.crystalLength = 56.8 * mm;
         A0.deadlayerThickness = 0.0003 * mm;
-        A0.distanceToEndcap = 17.0 * mm;
+        A0.distanceToEndcap = 14.5 * mm;
         fCloverSpec.crystals.push_back(A0);
 
         _cloverLeaf A1(baseLeaf);
         A1.name = "A1";
-        A1.allayerThickness = 0.8 * mm;
-        A1.crystalRadius = 28.50 * mm;
+        A1.allayerThickness = 1.6 * mm;
+        A1.crystalRadius = 26.5 * mm;
         A1.crystalLength = 59.0 * mm;
         A1.deadlayerThickness = 0.0003 * mm;
         A1.distanceToEndcap = 13.0 * mm;
@@ -101,20 +101,20 @@ HPGe::Clover::Clover(const _spec& spec, const std::string& name)
 
         _cloverLeaf A2(baseLeaf);
         A2.name = "A2";
-        A2.allayerThickness = 0.8 * mm;
-        A2.crystalRadius = 28.05 * mm;
+        A2.allayerThickness = 2.0 * mm;
+        A2.crystalRadius = 25.0 * mm;
         A2.crystalLength = 56.0 * mm;
         A2.deadlayerThickness = 0.0003 * mm;
-        A2.distanceToEndcap = 18.0 * mm;
+        A2.distanceToEndcap = 5.0 * mm;
         fCloverSpec.crystals.push_back(A2);
 
         _cloverLeaf A3(baseLeaf);
         A3.name = "A3";
-        A3.allayerThickness = 0.8 * mm;
-        A3.crystalRadius = 28.40 * mm;
+        A3.allayerThickness = 1.55 * mm;
+        A3.crystalRadius = 27.0 * mm;
         A3.crystalLength = 56.6 * mm;
         A3.deadlayerThickness = 0.0003 * mm;
-        A3.distanceToEndcap = 20.0 * mm;
+        A3.distanceToEndcap = 14.6 * mm;
         fCloverSpec.crystals.push_back(A3);
     }
 
