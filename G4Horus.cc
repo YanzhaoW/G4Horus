@@ -1,5 +1,6 @@
 #include "ActionInitialization.hh"
 #include "DetectorConstruction.hh"
+#include "PhysicsList.hh"
 
 #include "G4HadronicProcessStore.hh"
 #include "G4MTRunManager.hh"
@@ -59,7 +60,7 @@ int main(int argc, char* argv[])
     auto run_manager = new G4MTRunManager();
     run_manager->SetVerboseLevel(0);
     run_manager->SetUserInitialization(new DetectorConstruction());
-    // run_manager->SetUserInitialization(new QGSP_INCLXX(0));
+    // run_manager->SetUserInitialization(new PhysicsList());
     run_manager->SetUserInitialization(new Shielding(0)); // includes G4RadioactiveDecay
     run_manager->SetUserInitialization(new ActionInitialization(GetCmdOption(argv, argv + argc, "-k", "hist")));
     run_manager->SetNumberOfThreads(threads);

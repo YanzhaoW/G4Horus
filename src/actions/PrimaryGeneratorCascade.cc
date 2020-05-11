@@ -6,6 +6,7 @@
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
 #include "G4Event.hh"
+#include "G4PhysicalConstants.hh"
 
 #include <string>
 #include <algorithm>
@@ -23,8 +24,8 @@ G4double RandGen(PrimaryGeneratorCascade::LevelScheme &levels){
     return 0.0;
 }
 
-PrimaryGeneratorCascade::PrimaryGeneratorCascade(const LevelScheme& level_list, const double& energy)
-:fLevelScheme(level_list),fGamma(G4ParticleTable::GetParticleTable()->FindParticle("gamma")), fEnergy(energy)
+PrimaryGeneratorCascade::PrimaryGeneratorCascade(const double& energy)
+:fGamma(G4ParticleTable::GetParticleTable()->FindParticle("gamma")), fEnergy(energy)
 {
 }
 
@@ -66,7 +67,17 @@ void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, G4double E, std::
 
 void PrimaryGeneratorCascade::ParticleGun(G4Event* event, G4double energy){
     auto gamma = new G4PrimaryParticle(fGamma);
-    gamma->SetMomentumDirection(G4RandomDirection());
+
+	G4double phi = twopi * G4UniformRand();
+    G4double cos_theta = 2. * G4UniformRand() - 1.;
+    G4double sin_theta = std::sqrt(1. - cos_theta * cos_theta);
+    G4double ux = sin_theta * std::cos(phi);
+    G4double uy = sin_theta * std::sin(phi);
+    G4double uz = cos_theta;
+	gamma->SetMomentumDirection(G4ThreeVector(ux, uy, uz));
+
+    // gamma->SetMomentumDirection(G4RandomDirection());
+
     gamma->SetKineticEnergy(energy);
     auto gammaVertex = new G4PrimaryVertex();
     gammaVertex->SetPrimary(gamma);

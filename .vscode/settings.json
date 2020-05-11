@@ -66,6 +66,7 @@
         "member_writer": "cpp",
         "directory": "cpp",
         "*.icc": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "mathd": "cpp"
     }
 }

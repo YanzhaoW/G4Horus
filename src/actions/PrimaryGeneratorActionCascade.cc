@@ -1,5 +1,6 @@
 #include "PrimaryGeneratorActionCascade.hh"
 #include "PrimaryGeneratorCascade.hh"
+#include "CascadeMessenger.hh"
 
 #include "G4Event.hh"
 #include "G4ParticleTable.hh"
@@ -18,7 +19,7 @@ PrimaryGeneratorCascade::LevelScheme getScheme(){
     std::string intensity;
 
     
-    myfile.open("/data/ywang/Home/Geant4/G4Horus/scripts/Decay_Scheme_Ir190_Q1954.txt");
+    myfile.open("/data/ywang/Home/Geant4/G4Horus/scripts/Decay_Scheme_Sn111_Q2451.txt");
     myfile >> energy;
     myfile >> ini_level;
     myfile >> final_level;
@@ -36,8 +37,15 @@ PrimaryGeneratorCascade::LevelScheme getScheme(){
 }
 
 PrimaryGeneratorActionCascade::PrimaryGeneratorActionCascade()
-:fAct(getScheme(), 557.95*keV)
+:fAct(372.31*keV)
 {
+    fMessenger = new CascadeMessenger(this);
+    // G4cout << "PATH.>>>>>>>>>>>>>>>>"<<fPath<<"<<<<<<<<<<<<<<" << G4endl;
+    fAct.SetScheme(getScheme());
+}
+
+PrimaryGeneratorActionCascade::~PrimaryGeneratorActionCascade(){
+    delete fMessenger;
 }
 
 void PrimaryGeneratorActionCascade::GeneratePrimaries(G4Event *event)

@@ -13,9 +13,22 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {   
+    // debug(ywang) from Marvin
+    G4double phi = twopi * G4UniformRand();
+    G4double cos_theta = 2. * G4UniformRand() - 1.;
+    G4double sin_theta = std::sqrt(1. - cos_theta * cos_theta);
 
-    mom.setRThetaPhi(1., pi * G4UniformRand(), twopi * G4UniformRand());
-    // G4cout << "Theta: " << mom.getTheta() << "\tPhi: " << mom.getPhi() << G4endl;
-    gun.SetParticleMomentumDirection(mom);
+    G4double ux = sin_theta * std::cos(phi);
+    G4double uy = sin_theta * std::sin(phi);
+    G4double uz = cos_theta;
+
+    gun.SetParticleMomentumDirection(G4ThreeVector(ux, uy, uz));
     gun.GeneratePrimaryVertex(event);
+    
+    
+    // //JMayer version (original)
+    // mom.setRThetaPhi(1., pi * G4UniformRand(), twopi * G4UniformRand());
+    // // G4cout << "Theta: " << mom.getTheta() << "\tPhi: " << mom.getPhi() << G4endl;
+    // gun.SetParticleMomentumDirection(mom);
+    // gun.GeneratePrimaryVertex(event);
 }

@@ -1,5 +1,6 @@
 /gun/particle gamma
 /run/printProgress 10000
 /analysis/setFileName test
+/cascade/file PleaseGetItOut
 /gun/energy 1000 keV
 /run/beamOn 100000

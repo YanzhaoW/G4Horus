@@ -1,0 +1,4 @@
+
+/run/printProgress 1000
+/analysis/setFileName cascade
+/run/beamOn 1000

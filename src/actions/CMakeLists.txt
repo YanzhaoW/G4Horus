@@ -2,6 +2,7 @@ project(G4HorusActions)
 
 add_library(${PROJECT_NAME}
             ActionInitialization.cc
+            PhysicsList.cc
             EventActionHistogram.cc
             EventActionNtuple.cc
             EventActionSoco.cc
@@ -10,6 +11,7 @@ add_library(${PROJECT_NAME}
             PrimaryGeneratorActionScattering.cc
             PrimaryGeneratorScattering.cc
             PrimaryGeneratorCascade.cc
+            CascadeMessenger.cc
             RunActionHistogram.cc
             RunActionNtuple.cc
             RunActionSoco.cc)

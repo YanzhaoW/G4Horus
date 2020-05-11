@@ -3,6 +3,7 @@
 #include "G4SDManager.hh"
 #include "g4root.hh"
 #include <numeric>
+#include "G4PhysicalConstants.hh"
 
 extern const std::vector<std::string> detectors;
 
@@ -48,4 +49,9 @@ void EventActionHistogram::EndOfEventAction(const G4Event* event)
         // G4cout << edep << G4endl;
         analysisManager->FillH1(i, edep);
     }
+
+    // G4PrimaryVertex* vertex = event->GetPrimaryVertex();
+    // G4PrimaryParticle* par = vertex->GetPrimary();
+    // G4ThreeVector vect = par->GetMomentumDirection ();
+    // analysisManager->FillH2(0, vect.getTheta(), vect.getPhi());
 }

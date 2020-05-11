@@ -42,8 +42,8 @@ void ActionInitialization::BuildForMaster() const
 void ActionInitialization::Build() const
 {   
     
-    SetUserAction(new PrimaryGeneratorAction);
-    // SetUserAction(new PrimaryGeneratorActionCascade());
+    // SetUserAction(new PrimaryGeneratorAction);
+    SetUserAction(new PrimaryGeneratorActionCascade());
     // SetUserAction(new PrimaryGeneratorActionScattering);
     SetUserAction(fRunActionCreator());
     SetUserAction(fEventActionCreator());

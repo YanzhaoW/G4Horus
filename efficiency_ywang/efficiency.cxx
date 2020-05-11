@@ -9,9 +9,10 @@
 #include <map>
 #include <utility>
 #include <vector>
+#include <fstream>
 
-const std::vector<TString> detectors = {"A0", "A1", "A2", "A3", "B0", "B1", "B2", "B3"};
-
+const std::vector<TString> detectors = {"B0", "B1", "B2", "B3","A0", "A1", "A2", "A3"};
+// const std::vector<TString> detectors = {"crystal_1_logical", "crystal_2_logical", "crystal_3_logical", "crystal_4_logical", "crystal_5_logical", "crystal_6_logical", "crystal_7_logical", "crystal_8_logical"};
 
 using eff_vec = std::pair<vector<double>, vector<double>>;
 
@@ -28,7 +29,19 @@ int FileSize(const char *name)
 
 void Import_eff(map<TString, TGraphErrors*>& Ex_eff){
     for(auto const& det: detectors){
-        Ex_eff[det]= new TGraphErrors("./efficiencies_10cm/"+det+"_Ra.dat","%lg %lg %lg");
+        Ex_eff[det]= new TGraphErrors("./efficiencies_10cm/"+det+"_Ra.csv","%lg %lg %lg",",");
+    }
+}
+
+void Export_Sim_eff(std::map<TString, eff_vec>& efficiencies){
+    std::ofstream myfile;
+    for(auto const &det: detectors){
+        myfile.open("./Tables/"+det+"_sim.csv", std::ofstream::trunc);
+        myfile << "Energy,Efficiency\n";
+        for(int i=0; i < efficiencies[det].first.size(); i++){
+            myfile << efficiencies[det].first[i] << ","<< efficiencies[det].second[i] << "\n";
+        }
+        myfile.close();
     }
 }
 
@@ -42,18 +55,19 @@ void plot(map<TString, TGraph*> & Sim_eff, map<TString, TGraphErrors*>& Ex_eff){
     for(auto const& det: detectors){
         TCanvas canvas;
         Sim_eff[det]->SetTitle(det);
-        Sim_eff[det]->SetMarkerColor(4);
-        Sim_eff[det]->SetMarkerStyle(3);
+        Sim_eff[det]->SetLineColor(2);
+        // Sim_eff[det]->SetMarkerColor(4);
+        // Sim_eff[det]->SetMarkerStyle(3);
         Sim_eff[det]->Draw();
-        Sim_eff[det]->GetYaxis()->SetRangeUser(0.0, 0.022);
+        Sim_eff[det]->GetYaxis()->SetRangeUser(0.0, 0.01);
         Sim_eff[det]->GetXaxis()->SetTitle("gamma E (keV)");
         Sim_eff[det]->GetYaxis()->SetTitle("efficiency");
-        Ex_eff[det]->Draw("SAME");
+        Ex_eff[det]->Draw("SAMEp");
         TLegend legend(0.56,0.7,0.9,0.9);
         legend.AddEntry(Sim_eff[det],"Simulated efficiencies","lp");
         legend.AddEntry(Ex_eff[det],"measured efficiencies","le");
         legend.Draw("SAME");
-        canvas.SaveAs(det+".png");
+        canvas.SaveAs("./Plots/"+det+".png");
     }
 }
 
@@ -80,8 +94,8 @@ void calculate_ratio(std::map<TString, eff_vec> &efficiencies, std::map<TString,
             auto ratioGra = new TGraph(ratio.size(), &efficiencies[det].first[0], &ratio[0]);
             ratioGra->SetLineColor(color++);
             legend.AddEntry(ratioGra, det,"l");
-            if(det == "A0"){
-                ratioGra->GetYaxis()->SetRangeUser(1.0, 5.0);
+            if(det == detectors[0]){
+                ratioGra->GetYaxis()->SetRangeUser(0, 1.5);
                 ratioGra->GetXaxis()->SetTitle("gamma E (keV)");
                 ratioGra->GetYaxis()->SetTitle("ratio");
                 ratioGra->Draw("");
@@ -214,7 +228,8 @@ void efficiency(const TString &directory)
     // }
 
     Import_eff(Ex_eff);
+    Export_Sim_eff(efficiencies);
     TransformToTGraph(efficiencies, Sim_eff);
-    calculate_ratio(efficiencies,Ex_eff);
+    // calculate_ratio(efficiencies,Ex_eff);
     plot(Sim_eff, Ex_eff);
 }

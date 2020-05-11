@@ -1,13 +1,13 @@
 #! /bin/bash
 
 particle="gamma" 
-maxE=1000
-minE=1000
-step=0
-eventN=1000000
-printN=10000
+maxE=2500
+minE=100
+step=20
+eventN=100000
+printN=1000
 
-rm doit_from*.mac
+# rm doit_from*.mac
 filename="doit_from${minE}keV_upto${maxE}keV_step${step}keV.mac"
 touch $filename
 
