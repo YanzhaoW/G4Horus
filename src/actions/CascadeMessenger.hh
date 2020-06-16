@@ -2,7 +2,7 @@
 
 #include "G4UImessenger.hh"
 
-class PrimaryGeneratorActionCascade;
+class PrimaryGeneratorCascade;
 class G4UIdirectory;
 class G4UIcmdWithABool;
 class G4UIcmdWithADoubleAndUnit;
@@ -13,11 +13,11 @@ class CascadeMessenger: public G4UImessenger
 {
 public:
     void SetNewValue(G4UIcommand*, G4String);
-    CascadeMessenger(PrimaryGeneratorActionCascade*);
+    CascadeMessenger(PrimaryGeneratorCascade*);
     ~CascadeMessenger();
   
 private:
-	PrimaryGeneratorActionCascade*  fPriGen;
+	PrimaryGeneratorCascade*  fPriGen;
 	G4UIdirectory*                  fDir;
 	G4UIcmdWithABool*               fmode;
     G4UIcmdWithADoubleAndUnit*      fEnergy;

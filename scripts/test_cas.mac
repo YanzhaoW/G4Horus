@@ -1,4 +1,7 @@
 
-/run/printProgress 1000
+/run/printProgress 100000
 /analysis/setFileName cascade
-/run/beamOn 1000
+/cascade/mode 1
+/cascade/energy 372.31 keV
+/cascade/file Decay_Scheme_Sn111_Q2451
+/run/beamOn 1000000

@@ -7,40 +7,74 @@
 #include "Randomize.hh"
 #include "G4Event.hh"
 #include "G4PhysicalConstants.hh"
+#include "CascadeMessenger.hh"
 
 #include <string>
 #include <algorithm>
 
-G4double RandGen(PrimaryGeneratorCascade::LevelScheme &levels){
+PrimaryGeneratorCascade::LevelScheme::iterator RandGen(PrimaryGeneratorCascade::LevelScheme &levels){
 	G4double sum_weight = 0.0;
 	for(auto const& x: levels){
 		sum_weight += x.intensity;
 	}
 	G4double rnd = G4UniformRand()*sum_weight;
-	for(unsigned int i=0; i<levels.size();i++){
-		if(rnd < levels[i].intensity) return levels[i].energy;
-		rnd -= levels[i].intensity;
+
+	for(PrimaryGeneratorCascade::LevelScheme::iterator itp = levels.begin(); itp!=levels.end();itp++){
+		if(rnd < itp->intensity) return itp;
+		rnd -= itp->intensity;
 	}
-    return 0.0;
 }
 
-PrimaryGeneratorCascade::PrimaryGeneratorCascade(const double& energy)
-:fGamma(G4ParticleTable::GetParticleTable()->FindParticle("gamma")), fEnergy(energy)
+PrimaryGeneratorCascade::PrimaryGeneratorCascade()
+:fGamma(G4ParticleTable::GetParticleTable()->FindParticle("gamma"))
 {
+	fMessenger = new CascadeMessenger(this);
+}
+
+PrimaryGeneratorCascade::~PrimaryGeneratorCascade(){
+    delete fMessenger;
 }
 
 void PrimaryGeneratorCascade::GeneratePrimaryVertex(G4Event *event){
     ParticleGun(event, fEnergy);
-    Decay_UpDownward(event, fEnergy, "UP");
-    Decay_UpDownward(event, fEnergy, "DOWN");
-    
+	if(fMode){
+		LevelScheme::iterator it0 = GetItr(fEnergy);
+		Decay_UpDownward(event, it0, "UP");
+		
+		it0 = GetItr(fEnergy);
+    	Decay_UpDownward(event, it0, "DOWN");
+	}
 }
 
-void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, G4double E, std::string mode){
-	LevelScheme::iterator it;
+G4bool PrimaryGeneratorCascade::is_gamma_e(LevelScheme::iterator it){
+	if(it->is_gamma){
+		G4double rnd = G4UniformRand()*(1+it->alpha);
+        if(rnd<=1.0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
 
-	it = std::find_if(fLevelScheme.begin(),fLevelScheme.end(), [&](const Decay &x){return x.energy == E;});
+PrimaryGeneratorCascade::LevelScheme::iterator PrimaryGeneratorCascade::GetItr(G4double E){
+	LevelScheme::iterator itrp = find_if(fLevelScheme.begin(),fLevelScheme.end(), [&](const Decay &x){return x.energy == E;});
+	for(LevelScheme::iterator i=itrp; i < fLevelScheme.end(); i++){
+		i = find_if(i,fLevelScheme.end(), [&](const Decay &x){return x.energy == E;});
+		if(i->intensity > itrp->intensity) itrp = i;
+	}
+	return itrp;
+}
+
+void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, LevelScheme::iterator it, std::string mode){
+	// LevelScheme::iterator it;
+	// it = std::find_if(fLevelScheme.begin(),fLevelScheme.end(), [&](const Decay &x){return x.energy == E;});
 	if(it != fLevelScheme.end()){
+		
 		LevelScheme levels(0);
 		if(mode == "UP"){
 			std::copy_if(fLevelScheme.begin(),fLevelScheme.end(),std::back_inserter(levels),
@@ -54,15 +88,16 @@ void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, G4double E, std::
 		
 		if (levels.size() != 0)
 		{
-			G4double EE = RandGen(levels);
-			ParticleGun(event, EE);
-			
-			Decay_UpDownward(event, EE, mode);
+			LevelScheme::iterator itrEE = RandGen(levels);
+			if(is_gamma_e(itrEE)) ParticleGun(event, itrEE->energy);
+			Decay_UpDownward(event, itrEE, mode);
 		}
+		
 	}
 	else{
-		G4cout << "ERROR: energy not found!" << G4endl;
+		G4cout << "ERROR: energy not found at " <<it->ini_level <<"  ---->  "<<it->final_level<<" with mode " << mode<< G4endl;
 	}
+	
 }
 
 void PrimaryGeneratorCascade::ParticleGun(G4Event* event, G4double energy){

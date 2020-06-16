@@ -1,0 +1,4 @@
+ energy, unc, intensity %, unc,daughter level energy,end level energy,X-ray, shell,multipolarity, mixing ratio, unc, conversion coeff. ,unc, parent Z, N, symbol, parent energy , unc, jp, half-life operator, half_life, unc,unit, half_life [s], unc, decay, decay %, unc,isospin,magn. dipole, unc, elect. quadrupole , unc,Q , unc, Z,N, symbol 
+298,1,0.000052,0.000018,1097.7,799.7,,,E2,,,0.1194, ,84,130,Po,0, ,0+, ,164.3,20,us,0.0001643,0.000002,A,100, , , , , , ,7833.54,0.06,82,128,Pb,
+799.7,0.1,0.0104,0.0006,799.7,0,,,E2,,,0.01052, ,84,130,Po,0, ,0+, ,164.3,20,us,0.0001643,0.000002,A,100, , , , , , ,7833.54,0.06,82,128,Pb,
+

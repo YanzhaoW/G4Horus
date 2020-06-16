@@ -67,6 +67,7 @@
         "directory": "cpp",
         "*.icc": "cpp",
         "valarray": "cpp",
-        "mathd": "cpp"
+        "mathd": "cpp",
+        "free_seg": "cpp"
     }
 }
