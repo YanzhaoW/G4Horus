@@ -2,6 +2,7 @@ suppressMessages(library(tidyr))
 suppressMessages(library(dplyr))
 suppressMessages(library(data.table))
 suppressMessages(library(ggplot2))
+
 nuclide<-"226Ra"
 
 cat("current nuclide: ", nuclide, "\n")

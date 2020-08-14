@@ -54,7 +54,6 @@ getTable<-function(filename){
 suppressMessages(library(plyr))
 suppressMessages(library(dplyr))
 suppressMessages(library(magrittr))
-suppressMessages(library(ggpubr))
 suppressMessages(library(data.table))
 suppressMessages(library(stringr))
 
