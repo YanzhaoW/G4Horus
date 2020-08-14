@@ -37,6 +37,7 @@ PrimaryGeneratorCascade::LevelScheme getScheme(G4String FilePath){
         if(myfile.good()) scheme.push_back({stod(energy)*keV, stod(intensity), ini_level, final_level,stod(alpha),gamma=="1"});
     }
     myfile.close();
+
     return scheme;
 }
 

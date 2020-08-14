@@ -1,12 +1,17 @@
 getTable<-function(filename){
   data<-read.csv(file=filename, header=FALSE, sep=",", row.names = NULL,na.strings = c(""," ","NA"),stringsAsFactors=F)
+  # data<-read.csv(file=filename, sep=",", row.names = NULL,na.strings = c(""," ","NA"),stringsAsFactors=F)
   names<-as.matrix(data[1,])[1,]
   names(data)<-sub(' ','_',trimws(names))
   data<-data[-1,]
-  data<-data[,1:length(data)-1]
+  if(is.na(colnames(data)[ncol(data)])){
+    data<-data[,1:length(data)-1]
+  }else{
+    data<-data[,1:length(data)]
+  }
   paNu<-strsplit(filename,"_")[[1]][1]
   chNu<-strsplit(filename,"_")[[1]][2]
-  data<-filter(data,symbol.1 == substr(chNu, nchar(chNu)-1,nchar(chNu)))
+  data<-filter(data, symbol.1 == substr(chNu, nchar(chNu)-1,nchar(chNu)))
   is_gamma<-strsplit(strsplit(filename,"_")[[1]][3],"\\.")[[1]][1]=="1"
   
   if(is_gamma){
@@ -56,7 +61,7 @@ suppressMessages(library(stringr))
 Tran152Eu<-c("152Eu","152Sm","152Gd","148Sm","144Nd","140Ce")
 Tran226Ra<-c("226Ra","222Rn","218Po","214Pb","214Bi","214Po","210Pb","210Bi", "210Po","206Pb")
 
-Tran<-Tran152Eu
+Tran<-Tran226Ra
 
 files<-list.files(path="./", pattern = ".csv")
 parfiles<-strsplit(files,"_")%>%lapply('[[',1)%>%unlist()
@@ -68,6 +73,6 @@ levels$energy=format(round(levels$energy,2),nsmall=2)
 levels<-arrange(levels,energy)
 levels$energy=trimws(as.character(levels$energy))
 write.csv(x=levels, file =paste0("../../scripts/Decay_Scheme_",Tran[1],".csv",seq=''), quote=FALSE,row.names=FALSE)
-
+cat(paste0("../../scripts/Decay_Scheme_",Tran[1],".csv",seq=''),"is created \n")
 
 

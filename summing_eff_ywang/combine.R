@@ -1,8 +1,11 @@
-library(tidyr)
-library(dplyr)
-library(data.table)
-library(ggplot2)
-nuclide<-"152Eu"
+suppressMessages(library(tidyr))
+suppressMessages(library(dplyr))
+suppressMessages(library(data.table))
+suppressMessages(library(ggplot2))
+nuclide<-"226Ra"
+
+cat("current nuclide: ", nuclide, "\n")
+
 data<-read.csv("SummingCorrectionFactor.csv",row.names = NULL)
 data<-filter(data,Nuclide==nuclide)
 simData<-read.csv("factors.csv", row.names = NULL)
@@ -33,3 +36,6 @@ gplot<-cor_full%>%drop_na()%>%ggplot(aes(x=Energy))+
 gplot
 ggsave(filename=paste0("Summing_Sim_Ex_Comp_",nuclide,".png",seq=''),plot=gplot,device =
          "png", path="./", height =7, width=5, units="in",dpi=500)
+
+
+cat("combine.R has run successfully\n")

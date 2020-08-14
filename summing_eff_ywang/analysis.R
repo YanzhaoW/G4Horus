@@ -20,13 +20,13 @@ error_ppg = function(.x, .y, .dx, .dy, f){
   return(ans)
 }
 
-library(ggplot2)
-library(plyr)
-library(dplyr)
-library(tidyr)
-library(magrittr)
-library(ggpubr)
-library(data.table)
+suppressMessages(library(ggplot2))
+suppressMessages(library(plyr))
+suppressMessages(library(dplyr))
+suppressMessages(library(tidyr))
+suppressMessages(library(magrittr))
+suppressMessages(library(ggpubr))
+suppressMessages(library(data.table))
 data<-read.csv("efficiencies.csv",na.strings = "NA")
 det <- c("A0","A1","A2","A3","B0","B1","B2","B3")
 data_cs<-filter(data, Nuclide == "137Cs") %>% select(x100mm,dx100mm,x13mm,dx13mm)
@@ -65,7 +65,7 @@ gplot<-data_cas%>%drop_na()%>%filter(Nuclide==nuclide)%>%
 ggsave(filename=paste0("SummingCorrectionFactor_",nuclide,".png",seq=''),plot=gplot,device =
          "png", path="./", height =4, width=8, units="in",dpi=500)
 
-
+cat("analysis.R has run successfully\n")
 
 # energies<-levels(data_cas$Energy)
 # sum_cor<-data.frame(matrix(NA, nrow=length(energies), ncol = length(det), dimnames = list(energies, det)))

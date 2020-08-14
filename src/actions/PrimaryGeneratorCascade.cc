@@ -37,10 +37,11 @@ PrimaryGeneratorCascade::~PrimaryGeneratorCascade(){
 
 void PrimaryGeneratorCascade::GeneratePrimaryVertex(G4Event *event){
     ParticleGun(event, fEnergy);
+	
 	if(fMode){
 		LevelScheme::iterator it0 = GetItr(fEnergy);
 		Decay_UpDownward(event, it0, "UP");
-		
+
 		it0 = GetItr(fEnergy);
     	Decay_UpDownward(event, it0, "DOWN");
 	}
@@ -67,6 +68,7 @@ PrimaryGeneratorCascade::LevelScheme::iterator PrimaryGeneratorCascade::GetItr(G
 		i = find_if(i,fLevelScheme.end(), [&](const Decay &x){return x.energy == E;});
 		if(i->intensity > itrp->intensity) itrp = i;
 	}
+	if(itrp == fLevelScheme.end()) G4cout << "ERROR: energy not found at " << E << G4endl;
 	return itrp;
 }
 
@@ -79,6 +81,7 @@ void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, LevelScheme::iter
 		if(mode == "UP"){
 			std::copy_if(fLevelScheme.begin(),fLevelScheme.end(),std::back_inserter(levels),
                 [&](const Decay &x){return x.final_level==it->ini_level;});
+				
 		}else if(mode == "DOWN"){
 			std::copy_if(fLevelScheme.begin(),fLevelScheme.end(),std::back_inserter(levels),
                 [&](const Decay &x){return x.ini_level==it->final_level;});
@@ -93,9 +96,10 @@ void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, LevelScheme::iter
 			Decay_UpDownward(event, itrEE, mode);
 		}
 		
+		
 	}
 	else{
-		G4cout << "ERROR: energy not found at " <<it->ini_level <<"  ---->  "<<it->final_level<<" with mode " << mode<< G4endl;
+		G4cout << "ERROR: level does not exit! \t " <<"mode: " << mode<< G4endl;
 	}
 	
 }

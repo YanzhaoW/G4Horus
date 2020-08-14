@@ -1,141 +1,241 @@
 /run/printProgress 100000
-/analysis/setFileName 122_on
+/analysis/setFileName 186_on
 /cascade/mode 1
-/cascade/energy 121.78 keV
+/cascade/energy 186.21 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 122_off
+/analysis/setFileName 186_off
 /cascade/mode 0
-/cascade/energy 121.78 keV
+/cascade/energy 186.21 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 245_on
+/analysis/setFileName 242_on
 /cascade/mode 1
-/cascade/energy 244.70 keV
+/cascade/energy 242.00 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 245_off
+/analysis/setFileName 242_off
 /cascade/mode 0
-/cascade/energy 244.70 keV
+/cascade/energy 242.00 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 344_on
+/analysis/setFileName 295_on
 /cascade/mode 1
-/cascade/energy 344.28 keV
+/cascade/energy 295.22 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 344_off
+/analysis/setFileName 295_off
 /cascade/mode 0
-/cascade/energy 344.28 keV
+/cascade/energy 295.22 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 411_on
+/analysis/setFileName 352_on
 /cascade/mode 1
-/cascade/energy 411.12 keV
+/cascade/energy 351.93 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 411_off
+/analysis/setFileName 352_off
 /cascade/mode 0
-/cascade/energy 411.12 keV
+/cascade/energy 351.93 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 444_on
+/analysis/setFileName 609_on
 /cascade/mode 1
-/cascade/energy 443.96 keV
+/cascade/energy 609.32 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 444_off
+/analysis/setFileName 609_off
 /cascade/mode 0
-/cascade/energy 443.96 keV
+/cascade/energy 609.32 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 779_on
+/analysis/setFileName 665_on
 /cascade/mode 1
-/cascade/energy 778.90 keV
+/cascade/energy 665.45 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 779_off
+/analysis/setFileName 665_off
 /cascade/mode 0
-/cascade/energy 778.90 keV
+/cascade/energy 665.45 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 867_on
+/analysis/setFileName 768_on
 /cascade/mode 1
-/cascade/energy 867.38 keV
+/cascade/energy 768.36 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 867_off
+/analysis/setFileName 768_off
 /cascade/mode 0
-/cascade/energy 867.38 keV
+/cascade/energy 768.36 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 964_on
+/analysis/setFileName 806_on
 /cascade/mode 1
-/cascade/energy 964.06 keV
+/cascade/energy 806.18 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 964_off
+/analysis/setFileName 806_off
 /cascade/mode 0
-/cascade/energy 964.06 keV
+/cascade/energy 806.18 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1086_on
+/analysis/setFileName 934_on
 /cascade/mode 1
-/cascade/energy 1085.84 keV
+/cascade/energy 934.06 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1086_off
+/analysis/setFileName 934_off
 /cascade/mode 0
-/cascade/energy 1085.84 keV
+/cascade/energy 934.06 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1090_on
+/analysis/setFileName 1120_on
 /cascade/mode 1
-/cascade/energy 1089.74 keV
+/cascade/energy 1120.29 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1090_off
+/analysis/setFileName 1120_off
 /cascade/mode 0
-/cascade/energy 1089.74 keV
+/cascade/energy 1120.29 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1112_on
+/analysis/setFileName 1155_on
 /cascade/mode 1
-/cascade/energy 1112.08 keV
+/cascade/energy 1155.21 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1112_off
+/analysis/setFileName 1155_off
 /cascade/mode 0
-/cascade/energy 1112.08 keV
+/cascade/energy 1155.21 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1213_on
+/analysis/setFileName 1238_on
 /cascade/mode 1
-/cascade/energy 1212.95 keV
+/cascade/energy 1238.12 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1213_off
+/analysis/setFileName 1238_off
 /cascade/mode 0
-/cascade/energy 1212.95 keV
+/cascade/energy 1238.12 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1299_on
+/analysis/setFileName 1281_on
 /cascade/mode 1
-/cascade/energy 1299.14 keV
+/cascade/energy 1280.98 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
-/analysis/setFileName 1299_off
+/analysis/setFileName 1281_off
 /cascade/mode 0
-/cascade/energy 1299.14 keV
+/cascade/energy 1280.98 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1378_on
+/cascade/mode 1
+/cascade/energy 1377.67 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1378_off
+/cascade/mode 0
+/cascade/energy 1377.67 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1402_on
+/cascade/mode 1
+/cascade/energy 1401.52 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1402_off
+/cascade/mode 0
+/cascade/energy 1401.52 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
 /analysis/setFileName 1408_on
 /cascade/mode 1
-/cascade/energy 1408.01 keV
+/cascade/energy 1407.99 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000
 /analysis/setFileName 1408_off
 /cascade/mode 0
-/cascade/energy 1408.01 keV
+/cascade/energy 1407.99 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1509_on
+/cascade/mode 1
+/cascade/energy 1509.21 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1509_off
+/cascade/mode 0
+/cascade/energy 1509.21 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1661_on
+/cascade/mode 1
+/cascade/energy 1661.27 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1661_off
+/cascade/mode 0
+/cascade/energy 1661.27 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1730_on
+/cascade/mode 1
+/cascade/energy 1729.60 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1730_off
+/cascade/mode 0
+/cascade/energy 1729.60 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1764_on
+/cascade/mode 1
+/cascade/energy 1764.49 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1764_off
+/cascade/mode 0
+/cascade/energy 1764.49 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1847_on
+/cascade/mode 1
+/cascade/energy 1847.43 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 1847_off
+/cascade/mode 0
+/cascade/energy 1847.43 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 2119_on
+/cascade/mode 1
+/cascade/energy 2118.51 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 2119_off
+/cascade/mode 0
+/cascade/energy 2118.51 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 2204_on
+/cascade/mode 1
+/cascade/energy 2204.06 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 2204_off
+/cascade/mode 0
+/cascade/energy 2204.06 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 2448_on
+/cascade/mode 1
+/cascade/energy 2447.70 keV
+/cascade/file Decay_Scheme_226Ra
+/run/beamOn 1000000
+/analysis/setFileName 2448_off
+/cascade/mode 0
+/cascade/energy 2447.70 keV
 /cascade/file Decay_Scheme_226Ra
 /run/beamOn 1000000

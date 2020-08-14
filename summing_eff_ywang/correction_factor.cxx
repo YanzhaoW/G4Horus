@@ -163,6 +163,9 @@ void correction_factor(const TString &directory)
             std::cout <<elem.first << "\t"<< elem.second.second/elem.second.first << std::endl;
         }
     }
+    std::cout << std::endl;
+    std::cout << "factors.csv is created" << std::endl;
+    std::cout << "correction factor successfully calcualted" << std::endl;
 
     // for(auto const &det: detectors){
     //     std::cout << "detector: " << det << endl;
