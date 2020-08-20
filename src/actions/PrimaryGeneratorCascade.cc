@@ -68,7 +68,10 @@ PrimaryGeneratorCascade::LevelScheme::iterator PrimaryGeneratorCascade::GetItr(G
 		i = find_if(i,fLevelScheme.end(), [&](const Decay &x){return x.energy == E;});
 		if(i->intensity > itrp->intensity) itrp = i;
 	}
-	if(itrp == fLevelScheme.end()) G4cout << "ERROR: energy not found at " << E << G4endl;
+	if(itrp == fLevelScheme.end()){
+		G4cout << "ERROR: energy not found at " << E << G4endl;
+		exit (EXIT_FAILURE);
+	}
 	return itrp;
 }
 
