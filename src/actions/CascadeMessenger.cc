@@ -19,7 +19,7 @@ PrimaryGeneratorCascade::LevelScheme getScheme(G4String FilePath){
     std::string alpha;
     std::string gamma;
 
-    
+    std::cout << "reading file " << FilePath << "..." << std::endl;
     myfile.open(FilePath);
     getline(myfile,energy,',');
     getline(myfile,intensity,',');
@@ -37,6 +37,15 @@ PrimaryGeneratorCascade::LevelScheme getScheme(G4String FilePath){
         if(myfile.good()) scheme.push_back({stod(energy)*keV, stod(intensity), ini_level, final_level,stod(alpha),gamma=="1"});
     }
     myfile.close();
+
+    if(scheme.size() == 0){
+        std::cout << "ERROR: Decay_Scheme file READ unsuccessfully or is EMPTY! " << std::endl;
+        exit (EXIT_FAILURE);
+    }
+    else{
+        std::cout << FilePath << " read successfuly" << std::endl;
+        std::cout << "number of decays: " << scheme.size() << std::endl;
+    }
 
     return scheme;
 }

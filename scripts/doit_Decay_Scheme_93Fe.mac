@@ -1,0 +1,31 @@
+/run/printProgress 100000
+/analysis/setFileName 500_on
+/cascade/mode 1
+/cascade/energy 500.10 keV
+/cascade/file Decay_Scheme_93Fe
+/run/beamOn 1000000
+/analysis/setFileName 500_off
+/cascade/mode 0
+/cascade/energy 500.10 keV
+/cascade/file Decay_Scheme_93Fe
+/run/beamOn 1000000
+/analysis/setFileName 510_on
+/cascade/mode 1
+/cascade/energy 510.10 keV
+/cascade/file Decay_Scheme_93Fe
+/run/beamOn 1000000
+/analysis/setFileName 510_off
+/cascade/mode 0
+/cascade/energy 510.10 keV
+/cascade/file Decay_Scheme_93Fe
+/run/beamOn 1000000
+/analysis/setFileName 700_on
+/cascade/mode 1
+/cascade/energy 700.10 keV
+/cascade/file Decay_Scheme_93Fe
+/run/beamOn 1000000
+/analysis/setFileName 700_off
+/cascade/mode 0
+/cascade/energy 700.10 keV
+/cascade/file Decay_Scheme_93Fe
+/run/beamOn 1000000
