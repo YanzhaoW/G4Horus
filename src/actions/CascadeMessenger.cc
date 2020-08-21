@@ -7,6 +7,10 @@
 
 #include <string>
 #include <fstream>
+#include <experimental/filesystem>
+#include <mutex>
+
+namespace fs = std::experimental::filesystem;
 
 PrimaryGeneratorCascade::LevelScheme getScheme(G4String FilePath){
     PrimaryGeneratorCascade::LevelScheme scheme(0);
@@ -19,7 +23,7 @@ PrimaryGeneratorCascade::LevelScheme getScheme(G4String FilePath){
     std::string alpha;
     std::string gamma;
 
-    std::cout << "reading file " << FilePath << "..." << std::endl;
+    G4cout << "reading file " <<FilePath << "..." << G4endl;
     myfile.open(FilePath);
     getline(myfile,energy,',');
     getline(myfile,intensity,',');
@@ -39,14 +43,13 @@ PrimaryGeneratorCascade::LevelScheme getScheme(G4String FilePath){
     myfile.close();
 
     if(scheme.size() == 0){
-        std::cout << "ERROR: Decay_Scheme file READ unsuccessfully or is EMPTY! " << std::endl;
+        G4cerr << "ERROR: FAILED TO READ: " << FilePath << G4endl;
         exit (EXIT_FAILURE);
     }
     else{
-        std::cout << FilePath << " read successfuly" << std::endl;
-        std::cout << "number of decays: " << scheme.size() << std::endl;
+        G4cout << FilePath << " read successfuly" << G4endl;
+        G4cout << "number of decays: " << scheme.size() << G4endl;
     }
-
     return scheme;
 }
 
@@ -89,6 +92,7 @@ void CascadeMessenger::SetNewValue(G4UIcommand* command, G4String newValues){
         fPriGen->SetEnergy(fEnergy->GetNewDoubleValue(newValues));
     }
     else if(command==fPath){
-        fPriGen->SetScheme(getScheme("/data/ywang/Home/Geant4/G4Horus/scripts/"+ newValues+ ".csv"));
+        fs::path p = std::string("./../../scripts/"+ newValues+ ".csv").c_str();
+        fPriGen->SetScheme(getScheme(G4String(fs::canonical(p))));
     }
 }

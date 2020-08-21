@@ -16,5 +16,5 @@ add_library(${PROJECT_NAME}
             RunActionNtuple.cc
             RunActionSoco.cc)
 add_library(G4Horus::actions ALIAS ${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME} G4Horus::soco)
+target_link_libraries(${PROJECT_NAME} G4Horus::soco stdc++fs)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

@@ -68,6 +68,8 @@
         "*.icc": "cpp",
         "valarray": "cpp",
         "mathd": "cpp",
-        "free_seg": "cpp"
+        "free_seg": "cpp",
+        "filesystem": "cpp",
+        "codecvt": "cpp"
     }
 }

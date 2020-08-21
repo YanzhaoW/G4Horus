@@ -6,6 +6,7 @@ project(G4Horus)
 find_package(Geant4 10.5 REQUIRED ui_all vis_all multithreaded)
 # Unfortunately, Geant4 uses cmake ineptly and forces its settings upon us ...
 include(${Geant4_USE_FILE})
+
 message(STATUS "Geant4 Version:          ${Geant4_VERSION}")
 message(STATUS "Geant4 Include Dir:      ${Geant4_INCLUDE_DIRS}")
 message(STATUS "Geant4 Definitions:      ${Geant4_DEFINITIONS}")

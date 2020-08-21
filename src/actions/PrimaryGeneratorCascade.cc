@@ -69,7 +69,7 @@ PrimaryGeneratorCascade::LevelScheme::iterator PrimaryGeneratorCascade::GetItr(G
 		if(i->intensity > itrp->intensity) itrp = i;
 	}
 	if(itrp == fLevelScheme.end()){
-		G4cout << "ERROR: energy not found at " << E << G4endl;
+		G4cerr << "ERROR: energy not found at " << E << G4endl;
 		exit (EXIT_FAILURE);
 	}
 	return itrp;
@@ -89,7 +89,7 @@ void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, LevelScheme::iter
 			std::copy_if(fLevelScheme.begin(),fLevelScheme.end(),std::back_inserter(levels),
                 [&](const Decay &x){return x.ini_level==it->final_level;});
 		}else{
-			G4cout << "ERROR: choose correct decay direction!" << G4endl;
+			G4cerr << "ERROR: choose correct decay direction!" << G4endl;
 		}
 		
 		if (levels.size() != 0)
@@ -102,7 +102,7 @@ void PrimaryGeneratorCascade::Decay_UpDownward(G4Event *event, LevelScheme::iter
 		
 	}
 	else{
-		G4cout << "ERROR: level does not exit! \t " <<"mode: " << mode<< G4endl;
+		G4cerr << "ERROR: level does not exit! \t " <<"mode: " << mode<< G4endl;
 	}
 	
 }
