@@ -9,11 +9,9 @@ cat("current nuclide: ", nuclide, "\n")
 
 data<-read.csv("SummingCorrectionFactor.csv",row.names = NULL)
 data<-filter(data,Nuclide==nuclide)
-simData<-read.csv("factors.csv", row.names = NULL)
-simData<-simData[,1:length(simData)-1]
-names(simData)[1] <- "Energy"
-simData<-pivot_longer(simData,cols= c("A0","A1","A2","A3","B0","B1","B2","B3"),names_to=
-                       "Detector", values_to = "sim_z")
+simData<-read.csv("factors.csv", row.names = NULL)%>%gather( det, value, A0:B3)
+names(simData) <- c("Energy", "Detector", "sim_z")
+
 require(data.table)
 setDT(simData)
 setDT(data)

@@ -59,8 +59,9 @@ suppressMessages(library(stringr))
 
 Tran152Eu<-c("152Eu","152Sm","152Gd","148Sm","144Nd","140Ce")
 Tran226Ra<-c("226Ra","222Rn","218Po","214Pb","214Bi","214Po","210Pb","210Bi", "210Po","206Pb")
-
-Tran<-Tran226Ra
+Tran110In<-c("110In", "110CdM1")
+Tran110InM1<-c("110InM1", "110CdM1")
+Tran<-Tran110In
 
 files<-list.files(path="./", pattern = ".csv")
 parfiles<-strsplit(files,"_")%>%lapply('[[',1)%>%unlist()

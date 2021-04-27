@@ -70,6 +70,9 @@
         "mathd": "cpp",
         "free_seg": "cpp",
         "filesystem": "cpp",
-        "codecvt": "cpp"
-    }
+        "codecvt": "cpp",
+        "base_leaf": "cpp",
+        "infos": "cpp"
+    },
+    "cmake.configureOnOpen": false
 }

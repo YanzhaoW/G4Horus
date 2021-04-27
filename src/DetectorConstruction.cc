@@ -32,9 +32,9 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
     auto worldLV = new G4LogicalVolume(worldS, G4Material::GetMaterial("Galactic"), "World");
     worldLV->SetVisAttributes(G4VisAttributes::Invisible);
 
-    auto glover = new CologneCloverSetup(worldLV);
-    glover->PlaceDetector("CloziA", "A", 1.3 * cm);
-    glover->PlaceDetector("CloziB", "B", 1.3 * cm);
+    auto clover = new CologneCloverSetup(worldLV);
+    clover->PlaceDetector("CloziA", "A", 1.3 * cm);
+    clover->PlaceDetector("CloziB", "B", 1.3 * cm);
 
     auto worldPV = new G4PVPlacement(nullptr, G4ThreeVector(), worldLV, "World", nullptr, false, 0, fCheckOverlaps);
     return worldPV;

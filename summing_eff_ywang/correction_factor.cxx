@@ -144,15 +144,15 @@ void correction_factor(const TString &directory)
 
     std::ofstream myfile;
     myfile.open("factors.csv", std::ofstream::trunc);
-    myfile<<"energy(keV),";
+    myfile<<"energy(keV)";
     for(auto const &det: detectors){
-        myfile << det << ",";
+        myfile<<", " << det;
     }
     myfile<<"\n";
     for(const auto & e : efficiencies[detectors[0]]){
-        myfile << e.first<< ",";
+        myfile << e.first;
         for(auto const &det: detectors){
-            myfile << efficiencies[det][e.first].second/efficiencies[det][e.first].first<< ",";
+            myfile<<"," << efficiencies[det][e.first].second/efficiencies[det][e.first].first;
         }
         myfile << "\n";
     }
