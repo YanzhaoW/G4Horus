@@ -9,7 +9,7 @@ SocoFileMessenger::SocoFileMessenger(SocoAnalysisManager* manager)
     , fManager(manager)
     , fSetFileNameCmd(nullptr)
 {
-    fSetFileNameCmd = G4Analysis::make_unique<G4UIcmdWithAString>("/analysis/setFileName", this);
+    fSetFileNameCmd = std::make_unique<G4UIcmdWithAString>("/analysis/setFileName", this);
     fSetFileNameCmd->SetGuidance("Set name for the histograms & ntuple file");
     fSetFileNameCmd->SetParameterName("Filename", false);
     fSetFileNameCmd->AvailableForStates(G4State_PreInit, G4State_Idle);

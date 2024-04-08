@@ -1,7 +1,7 @@
 #include "EventActionNtuple.hh"
+#include "G4AnalysisManager.hh"
 #include "G4Event.hh"
 #include "G4SDManager.hh"
-#include "g4root.hh"
 #include <numeric>
 
 extern const std::vector<std::string> detectors;

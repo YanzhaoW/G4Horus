@@ -15,7 +15,7 @@ PIPS::PIPS(const std::string& name)
     G4VisAttributes* hull_vis = new G4VisAttributes(G4Color(0.5, 0.5, 0.5));
     hull_vis->SetForceSolid(true);
 
-    G4Material* active_material = G4Material::GetMaterial("G4_Si"); //TODO change Back to Sili
+    G4Material* active_material = G4Material::GetMaterial("G4_Si"); // TODO change Back to Sili
     G4VisAttributes* active_vis = new G4VisAttributes(G4Color(1, 0, 0));
     active_vis->SetForceSolid(true);
 
@@ -48,7 +48,7 @@ PIPS::PIPS(const std::string& name)
     // Container for all detector parts
     G4Tubs* envS = new G4Tubs("PIPS_" + name + "_envelope_solid", 0, front_outer, fLength / 2., 0. * deg, 360. * deg);
     fDetectorLV = new G4LogicalVolume(envS, vacuum_material, "PIPS_" + name + "_envelope_logical");
-    fDetectorLV->SetVisAttributes(G4VisAttributes::Invisible);
+    fDetectorLV->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     // Front
     G4ThreeVector front_pos = G4ThreeVector(0, 0, -fLength / 2. + front_thick / 2.);
@@ -82,13 +82,13 @@ PIPS::PIPS(const std::string& name)
     G4ThreeVector dead_front_pos = G4ThreeVector(0, 0, -fLength / 2. + front_thick - dead_front_thick / 2.);
     G4Tubs* dead_frontS = new G4Tubs("PIPS_" + name + "_dead_front_solid", 0, dead_front_outer, dead_front_thick / 2., 0. * deg, 360. * deg);
     G4LogicalVolume* dead_frontLV = new G4LogicalVolume(dead_frontS, active_material, "PIPS_" + name + "_dead_front_logical");
-    dead_frontLV->SetVisAttributes(G4VisAttributes::Invisible);
+    dead_frontLV->SetVisAttributes(G4VisAttributes::GetInvisible());
     new G4PVPlacement(nullptr, dead_front_pos, dead_frontLV, "Dead_front", fDetectorLV, false, 0, fCheckOverlaps);
 
     // Deadlayer back
     G4ThreeVector dead_back_pos = G4ThreeVector(0, 0, -fLength / 2. + front_thick + active_thick + dead_back_thick / 2.);
     G4Tubs* dead_backS = new G4Tubs("PIPS_" + name + "_dead_back_solid", 0, dead_back_outer, dead_back_thick / 2., 0. * deg, 360. * deg);
     G4LogicalVolume* dead_backLV = new G4LogicalVolume(dead_backS, active_material, "PIPS_" + name + "_dead_back_logical");
-    dead_backLV->SetVisAttributes(G4VisAttributes::Invisible);
+    dead_backLV->SetVisAttributes(G4VisAttributes::GetInvisible());
     new G4PVPlacement(nullptr, dead_back_pos, dead_backLV, "PIPS_" + name + "_dead_back", fDetectorLV, false, 0, fCheckOverlaps);
 }

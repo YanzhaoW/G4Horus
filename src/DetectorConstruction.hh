@@ -1,19 +1,27 @@
 #pragma once
 
 #include "G4VUserDetectorConstruction.hh"
+#include <G4SystemOfUnits.hh>
 
 extern const std::vector<std::string> detectors;
 
-class DetectorConstruction : public G4VUserDetectorConstruction {
+class DetectorConstruction : public G4VUserDetectorConstruction
+{
   public:
-    DetectorConstruction();
+    DetectorConstruction() = default;
+    explicit DetectorConstruction(bool is_overlap_checked = true)
+        : is_overlap_checked_{ is_overlap_checked }
+    {
+    }
 
-    G4VPhysicalVolume* Construct() override;
+    auto Construct() -> G4VPhysicalVolume* override;
     void ConstructSDandField() override;
+    void set_detector_distance(double distance) { detector_distance_ = distance; };
 
   private:
     void DefineMaterials();
-    G4VPhysicalVolume* DefineVolumes();
+    auto DefineVolumes() -> G4VPhysicalVolume*;
 
-    G4bool fCheckOverlaps;
+    G4bool is_overlap_checked_ = true;
+    double detector_distance_ = 1. * cm;
 };

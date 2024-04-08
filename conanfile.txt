@@ -1,0 +1,13 @@
+[requires]
+fmt/10.2.1
+cli11/2.4.1
+gtest/1.14.0
+nlohmann_json/3.11.3
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout
+

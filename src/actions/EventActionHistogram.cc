@@ -1,9 +1,10 @@
 #include "EventActionHistogram.hh"
+#include "G4AnalysisManager.hh"
 #include "G4Event.hh"
-#include "G4SDManager.hh"
-#include "g4root.hh"
-#include <numeric>
 #include "G4PhysicalConstants.hh"
+#include "G4SDManager.hh"
+#include <fmt/format.h>
+#include <numeric>
 
 extern const std::vector<std::string> detectors;
 
@@ -42,12 +43,12 @@ void EventActionHistogram::EndOfEventAction(const G4Event* event)
         fIDsCached = true;
     }
 
-    auto analysisManager = G4AnalysisManager::Instance();
+    auto* analysis_manager = G4AnalysisManager::Instance();
     const size_t ndets = detectors.size();
     for (size_t i = 0; i < ndets; i++) {
         const G4double edep = GetSum(GetHitsCollection(fHitCollectionIDs.at(i), event));
         // G4cout << edep << G4endl;
-        analysisManager->FillH1(i, edep);
+        analysis_manager->FillH1(i, edep);
     }
 
     // G4PrimaryVertex* vertex = event->GetPrimaryVertex();

@@ -1,11 +1,15 @@
-cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 
 project(G4Horus)
 
 # Find Geant4 package, require all available UI and Vis drivers by default
-find_package(Geant4 10.5 REQUIRED ui_all vis_all multithreaded)
+find_package(Geant4 10.5 REQUIRED COMPONENTS ui_all vis_all multithreaded)
+find_package(CLI11 REQUIRED)
+find_package(fmt REQUIRED)
 # Unfortunately, Geant4 uses cmake ineptly and forces its settings upon us ...
-include(${Geant4_USE_FILE})
+# include(${Geant4_USE_FILE})
+
+set(CMAKE_CXX_STANDARD 23)
 
 message(STATUS "Geant4 Version:          ${Geant4_VERSION}")
 message(STATUS "Geant4 Include Dir:      ${Geant4_INCLUDE_DIRS}")
@@ -25,11 +29,10 @@ find_package(assimp REQUIRED)
 add_subdirectory(src)
 
 # Add the executable, and link it to the Geant4 libraries
-add_executable(${PROJECT_NAME} G4Horus.cc)
-target_link_libraries(${PROJECT_NAME}
-                      G4Horus::construction
-                      G4Horus::actions
-                      ${Geant4_LIBRARIES}
-                      assimp)
-set_target_properties(${PROJECT_NAME}
-                      PROPERTIES INTERPROCEDURAL_OPTIMIZATION True)
+add_executable(${PROJECT_NAME} main.cc)
+target_link_libraries(${PROJECT_NAME} G4Horus::construction G4Horus::actions ${Geant4_LIBRARIES}
+                      CLI11::CLI11 assimp)
+set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION True)
+
+enable_testing()
+add_subdirectory(test)

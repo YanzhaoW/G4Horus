@@ -7,7 +7,6 @@ class G4Run;
 class RunActionHistogram : public G4UserRunAction {
   public:
     RunActionHistogram();
-    ~RunActionHistogram() override;
     RunActionHistogram(const RunActionHistogram&) = delete;
     RunActionHistogram(RunActionHistogram&&) = delete;
     RunActionHistogram& operator=(const RunActionHistogram&) = delete;
@@ -17,5 +16,5 @@ class RunActionHistogram : public G4UserRunAction {
     void EndOfRunAction(const G4Run* /*aRun*/) override;
   
   private:
-
+    std::string output_file_name_ = "test.root";
 };

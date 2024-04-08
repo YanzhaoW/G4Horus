@@ -1,7 +1,7 @@
 #include "RunActionNtuple.hh"
+#include "G4AnalysisManager.hh"
 #include "G4Run.hh"
 #include "G4SystemOfUnits.hh"
-#include "g4root.hh"
 
 extern const std::vector<std::string> detectors;
 

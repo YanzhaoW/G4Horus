@@ -2,11 +2,14 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3692474.svg)](https://doi.org/10.5281/zenodo.3692474)
 [![Build Status](https://travis-ci.org/janmayer/G4Horus.svg?branch=master)](https://travis-ci.org/janmayer/G4Horus)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/63623e8d5afb46b3a83014f7281af38c)](https://www.codacy.com/manual/janmayer/G4Horus)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/aed36e462b55424f8903bbc12afee877)](https://app.codacy.com/gh/YanzhaoW/G4Horus/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 An implementation of the HORUS High-Purity Germanium (HPGe) γ-ray spectrometer and associated equipment in Geant4.
 
-![G4Horus Default Geometry](doc/g4horus.png)
+<!-- ![G4Horus Default Geometry](doc/Clover.png) -->
+<p align="center">
+<img src="doc/Clover.png" width = 400>
+</p>
 
 ## Overview
 
@@ -39,6 +42,7 @@ Components:
         - Particle Gun
         - (WIP) Scattering Gun
         - (NYI) Coincidence Gun
+        - Cascade Gun
     - Output Formats
         - ROOT Histograms
         - ROOT Ntuples (not recommended)
@@ -54,46 +58,77 @@ Components:
 
 ### Dependencies
 
-- A not horribly outdated C++ build environment (`cmake` >= 3.11, `gcc` with C++11 support)
-- [Geant4](https://github.com/Geant4/geant4) >= 10.5 (make sure the proper environment variables are set, see example in `G4Horus.sh`)
-- [Assimp](https://www.assimp.org/) to load binary stl files. Should be available in your package manager. Note: CADMesh is bundled and does not need to be installed separately anymore.
+- CMake version >= 3.28.1
+- [conan](https://docs.conan.io/2/installation.html) version >= 2.0.1
+- gcc version >= 13
+- [Geant4](https://github.com/Geant4/geant4) version >= 11.2
 
 ### Installation
 
 ```sh
-git clone https://gitlab.ikp.uni-koeln.de/jmayer/g4horus.git
-cd g4horus
-./G4Horus.sh
+git clone https://github.com/YanzhaoW/G4Horus.git
+cd G4Horus
+git submodule init && git submodule update
+cmake --workflow --preset default
 ```
 
-The project should compile and open a visual interface with a default view should open.
+The project should compile successfully.
 
 ### Quick Simulation
 
-- Run `./G4Batch.sh scripts/doit.mac` or other macro files to run the actual simulation.
-- Use `./efficiency.sh` to automatically extract efficiencies from the simulated data.
-
-## Constructing the Setup
-
-The experimental setup is assembled in `src/DetectorConstruction.cc`. Change the target chamber, detectors, and sensitive volumes here.
-Use `./G4Horus.sh` to check your setup.
-
-Example for equipping HORUS with detectors:
-
-```C++
-auto horus = new Horus(worldLV);
-// ID, Position, Distance (to endcap or filters on endcap), Filters
-// BGO Type, Position, Distance (to BGO or filters on bgo), BGO-Filters
-horus->PlaceDetector("73954", "Ge00", 20. * cm);
-horus->PlaceDetector(BGO::tSMALLNOSE, "BGO00", 10. * cm, {{"G4_Cu", 2. * mm}});
+```shell
+cd build
+./G4Horus -m ../scripts/batch_default.mac
 ```
 
-and the sensitive volumes (WIP):
+## Usage
 
-```C++
-extern const std::vector<std::string> detectors = {"Ge00", "BGO00"};
+All user configurations of this program should be specified in a Geant4 macro file. The executable located in the build folder has two modes: visual mode and batch mode.
+
+### Visual mode
+
+Visual mode provides a graphical overview of detector geometries (Clover detector by default). It does not generate any simulated data.
+```shell
+./G4Horus -v
 ```
 
-Note that without setting the sensitive detector, no output will be recorded.
+### Batch mode
 
-The output type is set in `G4Batch.sh`, e.g. `-k hist` for histograms and `-k soco` for SOCOv2 events.
+Batch mode provides simulated data according to the user configurations defined in a macro file:
+```shell
+./G4Hours -m [macro_file_path.mac]
+```
+
+## Configurations in macro files
+
+Parameters like detector distances or particle energies are set by different commands in a macro file. Some (pre-init) commands can only be used before the initialization command (`/g4horus/init`), such as `output_type` or `distance`. An example of available commands can be found in the file [batch_default.mac](../scripts/batch_default.mac).
+
+### Commands in the macro file
+
+| commands       | required | pre-init | default | actions |
+|----------------|----------|----------|--------|---------|
+| `/g4horus/init` |    :heavy_check_mark:      |    :x:      |  none  |    Initialises the geometry and user defined actions in the simulation.     |
+| `/g4horus/output_type` | :x: | :heavy_check_mark: | hist |Specifies the output format of the simulation. Available options: [hist, ntuple, soco]|
+| `/g4horus/gun/read_decay_scheme` | :heavy_check_mark: | :heavy_check_mark: | none | Specifies the JSON file path of the input decay scheme. The generation of the JSON file can be done in this [program](https://github.com/YanzhaoW/NuclearChartConverter).|
+| `/g4horus/detector/distance` | :x: | :heavy_check_mark: | 1.0 cm | Specifies the distance between the radiation source and the detector front.|
+| `/g4horus/gun/type` | :x: | :heavy_check_mark: | cascade | Specifies the type of the event generator. Available options: [single, cascade, scattering]|
+| `/g4horus/gun/energy` | :x: | :x: | 0. keV | Specifies the energy of the decay.|
+| `/g4horus/gun/cascade` | :x:| :x: | true | emits all decays of a cascade if true and emit a single decay if false.|
+| `/analysis/setFileName` | :x:| :x: | hist.root | Set the output file name.|
+| `/run/printProgress` | :x: | :x: | 1 | Show the progress per number of events.|
+|`/run/beamOn` | :heavy_check_mark: | :x: | none | Set the number of events for the run.|
+
+Example:
+```text
+/g4horus/output_type hist
+/g4horus/gun/read_decay_scheme ../test/test.json
+/g4horus/detector/distance 1.3 cm
+/g4horus/gun/type cascade
+/g4horus/init
+
+/g4horus/gun/energy 919.337 keV
+/g4horus/gun/cascade true
+/run/printProgress 100
+/analysis/setFileName test
+/run/beamOn 1000
+```

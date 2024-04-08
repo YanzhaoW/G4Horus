@@ -1,5 +1,0 @@
- energy, unc, intensity %, unc,daughter level energy, HF, unc, parent Z, N, symbol, parent energy , unc, jp, half-life operator, half_life, unc,unit, half_life [s], unc, decay, decay %, unc,isospin,magn. dipole, unc, elect. quadrupole , unc,Q , unc, Z,N, symbol 
-6609.8,1.1,0.00006,0.00002,1097.7,400,140,84,130,Po,0, ,0+, ,164.3,20,us,0.0001643,0.000002,A,100, , , , , , ,7833.54,0.06,82,128,Pb,
-6902.2,0.3,0.0104,0.0006,799.7,27,1.6,84,130,Po,0, ,0+, ,164.3,20,us,0.0001643,0.000002,A,100, , , , , , ,7833.54,0.06,82,128,Pb,
-7686.82,0.07,99.9895,0.0006,0.0,1, ,84,130,Po,0, ,0+, ,164.3,20,us,0.0001643,0.000002,A,100, , , , , , ,7833.54,0.06,82,128,Pb,
-

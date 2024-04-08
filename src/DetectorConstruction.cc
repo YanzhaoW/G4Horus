@@ -22,7 +22,7 @@
 #include "SonicV3.hh"
 #include "SonicV3dEE.hh"
 
-extern const std::vector<std::string> detectors = {"A0", "A1", "A2", "A3", "B0", "B1", "B2", "B3"};
+extern const std::vector<std::string> detectors = { "A0", "A1", "A2", "A3", "B0", "B1", "B2", "B3" };
 
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
 {
@@ -30,22 +30,18 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
     const G4double worldSizeXYZ = 5. * m / 2;
     auto worldS = new G4Box("World", worldSizeXYZ, worldSizeXYZ, worldSizeXYZ);
     auto worldLV = new G4LogicalVolume(worldS, G4Material::GetMaterial("Galactic"), "World");
-    worldLV->SetVisAttributes(G4VisAttributes::Invisible);
+    worldLV->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     auto clover = new CologneCloverSetup(worldLV);
-    clover->PlaceDetector("CloziA", "A", 1.3 * cm);
-    clover->PlaceDetector("CloziB", "B", 1.3 * cm);
+    clover->PlaceDetector("CloziA", "A", detector_distance_);
+    clover->PlaceDetector("CloziB", "B", detector_distance_);
 
-    auto worldPV = new G4PVPlacement(nullptr, G4ThreeVector(), worldLV, "World", nullptr, false, 0, fCheckOverlaps);
+    auto worldPV =
+        new G4PVPlacement(nullptr, G4ThreeVector(), worldLV, "World", nullptr, false, 0, is_overlap_checked_);
     return worldPV;
 }
 
-DetectorConstruction::DetectorConstruction()
-    : fCheckOverlaps(true)
-{
-}
-
-G4VPhysicalVolume* DetectorConstruction::Construct()
+auto DetectorConstruction::Construct() -> G4VPhysicalVolume*
 {
     DefineMaterials();
     return DefineVolumes();
@@ -90,20 +86,24 @@ void DetectorConstruction::DefineMaterials()
 
 void DetectorConstruction::ConstructSDandField()
 {
-    for (const auto& det : detectors) {
+    for (const auto& det : detectors)
+    {
         auto activeVolume = new G4MultiFunctionalDetector(det);
         G4SDManager::GetSDMpointer()->AddNewDetector(activeVolume);
         activeVolume->RegisterPrimitive(new G4PSEnergyDeposit("edep"));
 
-        if (det.rfind("BGO", 0) == 0) {
+        if (det.rfind("BGO", 0) == 0)
+        {
             SetSensitiveDetector("BGO_" + det + "_bgo_lv", activeVolume);
             continue;
         }
-        if (det.rfind("Si", 0) == 0) {
+        if (det.rfind("Si", 0) == 0)
+        {
             SetSensitiveDetector("PIPS_" + det + "_active_logical", activeVolume);
             continue;
         }
-        if (det.rfind("Ge", 0) == 0 || det.rfind('A', 0) == 0 || det.rfind('B', 0) == 0) {
+        if (det.rfind("Ge", 0) == 0 || det.rfind('A', 0) == 0 || det.rfind('B', 0) == 0)
+        {
             SetSensitiveDetector("HPGe_" + det + "_crystal_logical", activeVolume);
             continue;
         }
