@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 project(G4Horus)
 
 # Find Geant4 package, require all available UI and Vis drivers by default
-find_package(Geant4 10.5 REQUIRED COMPONENTS ui_all vis_all multithreaded)
+find_package(Geant4 REQUIRED COMPONENTS ui_all vis_all multithreaded)
 find_package(CLI11 REQUIRED)
 find_package(fmt REQUIRED)
 # Unfortunately, Geant4 uses cmake ineptly and forces its settings upon us ...
