@@ -1,0 +1,31 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+stages:
+  - build
+  - test
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+default:
+  image: yanzhaowang/geant_root:latest
+
+build_project:
+  stage: build
+  script:
+    - cmake --preset default
+    - cmake --build --preset default
+  artifacts:
+    paths:
+      - build/
+    expire_in: 60 minutes
+
+test_project:
+  stage: test
+  needs: [build_project]
+  script:
+    - cd build && ctest
