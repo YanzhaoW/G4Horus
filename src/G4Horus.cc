@@ -54,6 +54,7 @@ namespace G4Horus
 
     void Application::set_particle_energy(double energy)
     {
+        fmt::print("Set the energy to be {}\n", energy);
         particle_energy_ = energy;
         if (gen_type_ == GeneratorType::cascade)
         {

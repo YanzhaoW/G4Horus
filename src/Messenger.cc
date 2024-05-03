@@ -51,12 +51,12 @@ namespace G4Horus
         generator_type_->SetDefaultValue("single");
         generator_type_->AvailableForStates(G4State_PreInit);
 
-        particle_energy_ = std::make_unique<G4UIcmdWithADoubleAndUnit>("/g4horus/gun/energy", this);
+        particle_energy_ = std::make_unique<G4UIcmdWithAString>("/g4horus/gun/energy", this);
         particle_energy_->SetGuidance("Set the energy of beam.");
         particle_energy_->SetParameterName("energy", true);
-        particle_energy_->SetDefaultUnit("keV");
-        particle_energy_->SetDefaultValue(0.);
-        particle_energy_->SetUnitCandidates("eV keV MeV GeV");
+        // particle_energy_->SetDefaultUnit("keV");
+        particle_energy_->SetDefaultValue("0.");
+        // particle_energy_->SetUnitCandidates("eV keV MeV GeV");
         particle_energy_->AvailableForStates(G4State_PreInit, G4State_Idle);
 
         set_cascade_mode_ = std::make_unique<G4UIcmdWithABool>("/g4horus/gun/cascade", this);
@@ -88,7 +88,7 @@ namespace G4Horus
 
         if (command == particle_energy_.get())
         {
-            app_->set_particle_energy(particle_energy_->GetNewDoubleValue(new_values) / (1 * keV));
+            app_->set_particle_energy(std::stod(new_values));
         }
 
         if (command == set_cascade_mode_.get())

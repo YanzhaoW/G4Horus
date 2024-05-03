@@ -104,31 +104,36 @@ Batch mode provides simulated data according to the user configurations defined 
 Parameters like detector distances or particle energies are set by different commands in a macro file. Some (pre-init) commands can only be used before the initialization command (`/g4horus/init`), such as `output_type` or `distance`. An example of available commands can be found in the file [batch_default.mac](../scripts/batch_default.mac).
 
 ### Commands in the macro file
+```sh
+# Optional. Specifies the output format of the simulation. Must be defined before init.
+/g4horus/output_type hist # Available options: [hist, ntuple, soco]. Default: hist
 
-| commands       | required | pre-init | default | actions |
-|----------------|----------|----------|--------|---------|
-| `/g4horus/init` |    :heavy_check_mark:      |    :x:      |  none  |    Initialises the geometry and user defined actions in the simulation.     |
-| `/g4horus/output_type` | :x: | :heavy_check_mark: | hist |Specifies the output format of the simulation. Available options: [hist, ntuple, soco]|
-| `/g4horus/gun/read_decay_scheme` | :heavy_check_mark: | :heavy_check_mark: | none | Specifies the JSON file path of the input decay scheme. The generation of the JSON file can be done in this [program](https://github.com/YanzhaoW/NuclearChartConverter).|
-| `/g4horus/detector/distance` | :x: | :heavy_check_mark: | 1.0 cm | Specifies the distance between the radiation source and the detector front.|
-| `/g4horus/gun/type` | :x: | :heavy_check_mark: | cascade | Specifies the type of the event generator. Available options: [single, cascade, scattering]|
-| `/g4horus/gun/energy` | :x: | :x: | 0. keV | Specifies the energy of the decay.|
-| `/g4horus/gun/cascade` | :x:| :x: | true | emits all decays of a cascade if true and emit a single decay if false.|
-| `/analysis/setFileName` | :x:| :x: | hist.root | Set the output file name.|
-| `/run/printProgress` | :x: | :x: | 1 | Show the progress per number of events.|
-|`/run/beamOn` | :heavy_check_mark: | :x: | none | Set the number of events for the run.|
+# Required. Specifies the JSON file path of the input decay scheme. 
+/g4horus/gun/read_decay_scheme ../test/test.json # Relative or absolute path
 
-Example:
-```text
-/g4horus/output_type hist
-/g4horus/gun/read_decay_scheme ../test/test.json
-/g4horus/detector/distance 1.3 cm
-/g4horus/gun/type cascade
+# Optional. Specifies the distance between the radiation source and the detector front. Must be defined before init.
+/g4horus/detector/distance 1.3 cm # Default: 1.3 cm
+
+# Optional. Specifies the type of the event generator. 
+/g4horus/gun/type cascade # Available options: [single, cascade, scattering]. Default: cascade
+
+# Required. initialization
 /g4horus/init
 
-/g4horus/gun/energy 919.337 keV
-/g4horus/gun/cascade true
+# Optional. Specifies the energy (keV) of the decay. Don't specify the unit.
+/g4horus/gun/energy 919.337 # Default: 0.
+
+# Optional. emits all decays of a cascade if true and emit a single decay if false.
+/g4horus/gun/cascade true # Default: true
+
+# Show the progress per number of events.
 /run/printProgress 100
-/analysis/setFileName test
+    
+# Optional. Set the output file name.
+/analysis/setFileName test.root # Default: hist.root
+
+# Required. Set the number of events for the run.
 /run/beamOn 1000
 ```
+
+The generation of the JSON file can be done in this [program](https://github.com/YanzhaoW/NuclearChartConverter).

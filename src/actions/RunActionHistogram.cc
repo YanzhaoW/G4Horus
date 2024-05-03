@@ -18,7 +18,8 @@ RunActionHistogram::RunActionHistogram()
     analysis_manager->SetHistoDirectoryName("");
     for (const auto& det : detectors)
     {
-        auto hist_id = analysis_manager->CreateH1(det, "Edep in " + det, 20000, 0., 3. * MeV);
+        // TODO: histogram range configurable from mac file
+        auto hist_id = analysis_manager->CreateH1(det, "Edep in " + det, 30000, 0., 3. * MeV);
     }
     // analysis_manager->CreateH2("angle_dis", "spacial distribution", 200, 0., pi , 200, -pi, pi);
 }

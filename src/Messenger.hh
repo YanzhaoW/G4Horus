@@ -25,7 +25,7 @@ namespace G4Horus
         std::unique_ptr<G4UIcmdWithAString> output_type_;
         std::unique_ptr<G4UIcmdWithAString> generator_type_;
         std::unique_ptr<G4UIcmdWithAString> generator_file_name;
-        std::unique_ptr<G4UIcmdWithADoubleAndUnit> particle_energy_;
+        std::unique_ptr<G4UIcmdWithAString> particle_energy_;
         std::unique_ptr<G4UIcmdWithABool> set_cascade_mode_;
 
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> detector_distance_;

@@ -63,6 +63,8 @@ namespace G4Horus::Cascade
         fmt::print("Decay scheme info: \n\t Number of decays: {} \n\t Number of energy levels: {}\n",
                    get_num_of_decays(),
                    get_num_of_levels());
+        fmt::print("\t\nDecay energies: [{}]",
+                   fmt::join(decays_ | rng::views::transform([](const auto& decay) { return decay->energy; }), ", "));
     }
 
     auto DecayScheme::get_decays(const EnergyLevel& level) const -> const LevelDecays&

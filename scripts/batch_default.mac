@@ -4,13 +4,13 @@
 /g4horus/gun/type cascade
 /g4horus/init
 
-/g4horus/gun/energy 919.337 keV
+/g4horus/gun/energy 919.337
 /g4horus/gun/cascade true
 /run/printProgress 100
 /analysis/setFileName test1_on
 /run/beamOn 1000
 
-/g4horus/gun/energy 919.337 keV
+/g4horus/gun/energy 919.337
 /g4horus/gun/cascade false
 /run/printProgress 100
 /analysis/setFileName test1_off
