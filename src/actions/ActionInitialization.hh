@@ -2,6 +2,7 @@
 
 #include "CascadeGeneratorAction.hh"
 #include "G4VUserActionInitialization.hh"
+#include "RunActionHistogram.hh"
 #include <DecayScheme.hh>
 #include <memory>
 #include <string>
@@ -34,12 +35,16 @@ namespace G4Horus
 
         void BuildForMaster() const override;
         void Build() const override;
+
         void SetDecayHandler(Cascade::DecayHandler* handler) { decay_handler_ = handler; }
-        auto GetDecayHandler() ->const Cascade::DecayHandler* { return decay_handler_; }
+        void SetHistogramSetting(const HistogramRunActionSetting* hist_setting) { histogram_setting_ = hist_setting; }
+
+        auto GetDecayHandler() -> const Cascade::DecayHandler* { return decay_handler_; }
 
       private:
         GeneratorType gen_type_;
         const Cascade::DecayHandler* decay_handler_ = nullptr;
+        const HistogramRunActionSetting* histogram_setting_ = nullptr;
         OutputFormat output_format_;
         float gun_energy = 0.;
 

@@ -53,7 +53,7 @@ namespace G4Horus
         switch (output_format_)
         {
             case OutputFormat::hist:
-                return std::make_unique<RunActionHistogram>();
+                return std::make_unique<RunActionHistogram>(histogram_setting_);
             case OutputFormat::ntuple:
                 return std::make_unique<RunActionNtuple>();
             case OutputFormat::soco:

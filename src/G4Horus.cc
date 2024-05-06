@@ -7,7 +7,9 @@
 #include "Shielding.hh"
 // #include "QGSP_INCLXX.hh"
 
+#include <chrono>
 #include <filesystem>
+#include <fmt/chrono.h>
 
 namespace fs = std::filesystem;
 namespace G4Horus
@@ -66,6 +68,7 @@ namespace G4Horus
     {
         auto action = std::make_unique<ActionInitialization>(gen_type_, output_format_);
         action->SetDecayHandler(&decay_handler_);
+        action->SetHistogramSetting(&hist_setting_);
         run_manager_->SetUserInitialization(action.release());
     }
 
@@ -81,9 +84,12 @@ namespace G4Horus
 
     void Application::launch_batch_mode()
     {
-        G4cout << "Apply macro file" << G4endl;
+        auto time_start = std::chrono::steady_clock::now();
+        G4cout << "Starting batch mode..." << G4endl;
         auto* ui_manager = G4UImanager::GetUIpointer();
         ui_manager->ApplyCommand("/control/execute " + macro_file_);
-        G4cout << "Macro file is applied" << G4endl;
+        auto time_end = std::chrono::steady_clock::now();
+        G4cout << "Batch mode runs succesfully!" << G4endl;
+        G4cout << fmt::format("Time spent: {:%H h, %M min, %S sec}", time_end - time_start) << G4endl;
     }
 } // namespace G4Horus

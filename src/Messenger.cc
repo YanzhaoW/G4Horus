@@ -16,6 +16,10 @@ namespace G4Horus
 
         detector_directory_ = std::make_unique<G4UIdirectory>("/g4horus/detector/");
         detector_directory_->SetGuidance("User controls on G4Horus detector parameters.");
+
+        output_directory_ = std::make_unique<G4UIdirectory>("/g4horus/output/");
+        output_directory_->SetGuidance("User controls on G4Horus output parameters.");
+
         set_list_of_commands();
     }
 
@@ -25,11 +29,30 @@ namespace G4Horus
         do_init_->SetGuidance("Initialize G4Horus.");
         do_init_->AvailableForStates(G4State_PreInit);
 
-        output_type_ = std::make_unique<G4UIcmdWithAString>("/g4horus/output_type", this);
+        output_type_ = std::make_unique<G4UIcmdWithAString>("/g4horus/output/type", this);
         output_type_->SetGuidance("Specify the output format.");
-        output_type_->SetParameterName("output_type", true);
+        output_type_->SetParameterName("type", true);
         output_type_->SetDefaultValue("hist");
         output_type_->AvailableForStates(G4State_PreInit);
+
+        hist_bin_num_ = std::make_unique<G4UIcmdWithAnInteger>("/g4horus/output/hist_bin_num", this);
+        hist_bin_num_->SetGuidance("Specify the number of bins in histogram.");
+        hist_bin_num_->SetParameterName("distance", true);
+        hist_bin_num_->SetDefaultValue(1);
+
+        hist_min_ = std::make_unique<G4UIcmdWithADoubleAndUnit>("/g4horus/output/hist_min", this);
+        hist_min_->SetGuidance("Specify the minimal value of the histogram.");
+        hist_min_->SetParameterName("hist_min", true);
+        hist_min_->SetDefaultUnit("MeV");
+        hist_min_->SetDefaultValue(0.);
+        hist_min_->SetUnitCandidates("eV keV MeV GeV");
+
+        hist_max_ = std::make_unique<G4UIcmdWithADoubleAndUnit>("/g4horus/output/hist_max", this);
+        hist_max_->SetGuidance("Specify the maximal value of the histogram.");
+        hist_max_->SetParameterName("hist_max", true);
+        hist_max_->SetDefaultUnit("MeV");
+        hist_max_->SetDefaultValue(1.);
+        hist_max_->SetUnitCandidates("eV keV MeV GeV");
 
         detector_distance_ = std::make_unique<G4UIcmdWithADoubleAndUnit>("/g4horus/detector/distance", this);
         detector_distance_->SetGuidance("Set the distance of detectors.");
@@ -74,6 +97,21 @@ namespace G4Horus
         if (command == output_type_.get())
         {
             app_->set_output_format(string_to_output_format(new_values));
+        }
+
+        if (command == hist_bin_num_.get())
+        {
+            app_->get_hist_setting_ref().bin_num = hist_bin_num_->GetNewIntValue(new_values);
+        }
+
+        if (command == hist_max_.get())
+        {
+            app_->get_hist_setting_ref().bin_max = hist_max_->GetNewDoubleValue(new_values);
+        }
+
+        if (command == hist_min_.get())
+        {
+            app_->get_hist_setting_ref().bin_min = hist_min_->GetNewDoubleValue(new_values);
         }
 
         if (command == generator_file_name.get())

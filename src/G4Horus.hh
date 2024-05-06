@@ -28,6 +28,9 @@ namespace G4Horus
         void set_particle_energy(double energy);
         void set_detector_distance(double distance) { detector_distance_ = distance; };
 
+        // getters:
+        auto get_hist_setting_ref() -> auto& { return hist_setting_; }
+
         // interfaces:
         void init();
         void launch();
@@ -44,6 +47,7 @@ namespace G4Horus
         std::string macro_file_;
         OutputFormat output_format_ = OutputFormat::hist;
         GeneratorType gen_type_ = GeneratorType::single;
+        HistogramRunActionSetting hist_setting_;
         std::unique_ptr<G4MTRunManager> run_manager_;
         std::unique_ptr<CLHEP::RanecuEngine> random_engine_ = std::make_unique<CLHEP::RanecuEngine>();
         Messenger messnger_{ this };

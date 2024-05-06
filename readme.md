@@ -106,7 +106,16 @@ Parameters like detector distances or particle energies are set by different com
 ### Commands in the macro file
 ```sh
 # Optional. Specifies the output format of the simulation. Must be defined before init.
-/g4horus/output_type hist # Available options: [hist, ntuple, soco]. Default: hist
+/g4horus/output/type hist # Available options: [hist, ntuple, soco]. Default: hist
+
+# Optional. Specifies the number of bins in the output histograms
+/g4horus/output/hist_bin_num 30000 # default: 1
+
+# Optional. Specifies the minimal value of the output histograms
+/g4horus/output/hist_min 0. MeV # default: 0 MeV
+
+# Optional. Specifies the maximal value of the output histograms
+/g4horus/output/hist_max 3. MeV # default: 1 MeV
 
 # Required. Specifies the JSON file path of the input decay scheme. 
 /g4horus/gun/read_decay_scheme ../test/test.json # Relative or absolute path
