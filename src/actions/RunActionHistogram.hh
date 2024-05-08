@@ -1,19 +1,12 @@
 #pragma once
 
-#include "G4SystemOfUnits.hh"
 #include "G4UserRunAction.hh"
+#include "Shared.hh"
 
 class G4Run;
 
 namespace G4Horus
 {
-    struct HistogramRunActionSetting
-    {
-        int bin_num = 1;
-        double bin_min = 0. * MeV;
-        double bin_max = 1. * MeV;
-    };
-
     class RunActionHistogram : public G4UserRunAction
     {
       public:

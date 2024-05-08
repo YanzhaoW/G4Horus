@@ -1,15 +1,20 @@
 #pragma once
 
-#include "G4THitsMap.hh"
 #include "G4UserEventAction.hh"
 #include <vector>
 
-class EventActionNtuple : public G4UserEventAction {
-  public:
-    EventActionNtuple();
-    void EndOfEventAction(const G4Event* event) override;
+namespace G4Horus
+{
+    class RunActionNtuple;
+    class EventActionNtuple : public G4UserEventAction
+    {
+      public:
+        explicit EventActionNtuple(RunActionNtuple* run_action);
+        void EndOfEventAction(const G4Event* event) override;
 
-  private:
-    bool fIDsCached;
-    std::vector<G4int> fHitCollectionIDs;
-};
+      private:
+        bool fIDsCached;
+        RunActionNtuple* run_action_ = nullptr;
+        std::vector<int> fHitCollectionIDs;
+    };
+} // namespace G4Horus

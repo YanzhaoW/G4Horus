@@ -49,7 +49,7 @@ namespace G4Horus
         float gun_energy = 0.;
 
         [[nodiscard]] auto create_run_action() const -> std::unique_ptr<G4UserRunAction>;
-        [[nodiscard]] auto create_event_action() const -> std::unique_ptr<G4UserEventAction>;
+        [[nodiscard]] auto create_event_action(G4UserRunAction* run_action) const -> std::unique_ptr<G4UserEventAction>;
         [[nodiscard]] auto create_generator_action() const -> std::unique_ptr<G4VUserPrimaryGeneratorAction>;
     };
 

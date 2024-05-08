@@ -1,41 +1,42 @@
 #include "RunActionNtuple.hh"
 #include "G4AnalysisManager.hh"
 #include "G4Run.hh"
-#include "G4SystemOfUnits.hh"
 
 extern const std::vector<std::string> detectors;
 
-RunActionNtuple::RunActionNtuple()
+namespace G4Horus
 {
-    auto analysis_manager = G4AnalysisManager::Instance();
-    analysis_manager->SetVerboseLevel(0);
+    RunActionNtuple::RunActionNtuple(const HistogramRunActionSetting* setting)
+        : setting_{ setting }
+    {
+        analysis_manager_ = std::unique_ptr<G4GenericAnalysisManager>(G4AnalysisManager::Instance());
+        analysis_manager_->SetNtupleMerging(true);
+        analysis_manager_->SetVerboseLevel(0);
+        analysis_manager_->SetNtupleRowWise(false, false);
 
-    G4cout << "Output: Using " << analysis_manager->GetType() << " with ntuple" << G4endl;
+        G4cout << "Output: Using " << analysis_manager_->GetType() << " with ntuple" << G4endl;
 
-    analysis_manager->SetHistoDirectoryName("histograms");
-    analysis_manager->SetNtupleDirectoryName("ntuple");
-    analysis_manager->CreateNtuple("Horus", "Edep");
-    for (auto& det : detectors) {
-        analysis_manager->CreateH1(det, "Edep in " + det, 20000, 0., 20. * MeV); // Always use 1keV/bin!
-        analysis_manager->CreateNtupleDColumn(det);
+        analysis_manager_->SetHistoDirectoryName("histograms");
+        analysis_manager_->SetNtupleDirectoryName("ntuple");
+        analysis_manager_->CreateNtuple("Horus", "Edep");
+        for (const auto& det : detectors)
+        {
+            auto hist_id = analysis_manager_->CreateH1(
+                det, "Edep in " + det, setting_->bin_num, setting_->bin_min, setting_->bin_max);
+            analysis_manager_->CreateNtupleDColumn(det);
+        }
+        analysis_manager_->FinishNtuple();
     }
-    analysis_manager->FinishNtuple();
-}
 
-RunActionNtuple::~RunActionNtuple()
-{
-    delete G4AnalysisManager::Instance();
-}
+    void RunActionNtuple::BeginOfRunAction(const G4Run* /*aRun*/)
+    {
+        analysis_manager_->OpenFile();
+    }
 
-void RunActionNtuple::BeginOfRunAction(const G4Run* /*aRun*/)
-{
-    auto analysis_manager = G4AnalysisManager::Instance();
-    analysis_manager->OpenFile();
-}
+    void RunActionNtuple::EndOfRunAction(const G4Run* /*aRun*/)
+    {
+        analysis_manager_->Write();
+        analysis_manager_->CloseFile();
+    }
 
-void RunActionNtuple::EndOfRunAction(const G4Run* /*aRun*/)
-{
-    auto analysis_manager = G4AnalysisManager::Instance();
-    analysis_manager->Write();
-    analysis_manager->CloseFile();
-}
+} // namespace G4Horus

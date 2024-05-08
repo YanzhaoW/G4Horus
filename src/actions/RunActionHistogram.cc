@@ -25,11 +25,9 @@ namespace G4Horus
         // analysis_manager->SetHistoDirectoryName("");
         for (const auto& det : detectors)
         {
-            // TODO: histogram range configurable from mac file
             auto hist_id = analysis_manager->CreateH1(
                 det, "Edep in " + det, setting_->bin_num, setting_->bin_min, setting_->bin_max);
         }
-        // analysis_manager->CreateH2("angle_dis", "spacial distribution", 200, 0., pi , 200, -pi, pi);
     }
 
     void RunActionHistogram::BeginOfRunAction(const G4Run* /*aRun*/)

@@ -55,7 +55,7 @@ namespace G4Horus
             case OutputFormat::hist:
                 return std::make_unique<RunActionHistogram>(histogram_setting_);
             case OutputFormat::ntuple:
-                return std::make_unique<RunActionNtuple>();
+                return std::make_unique<RunActionNtuple>(histogram_setting_);
             case OutputFormat::soco:
                 return std::make_unique<RunActionSoco>();
             default:
@@ -63,14 +63,15 @@ namespace G4Horus
         }
     }
 
-    auto ActionInitialization::create_event_action() const -> std::unique_ptr<G4UserEventAction>
+    auto ActionInitialization::create_event_action(G4UserRunAction* run_action) const
+        -> std::unique_ptr<G4UserEventAction>
     {
         switch (output_format_)
         {
             case OutputFormat::hist:
                 return std::make_unique<EventActionHistogram>();
             case OutputFormat::ntuple:
-                return std::make_unique<EventActionNtuple>();
+                return std::make_unique<EventActionNtuple>(dynamic_cast<RunActionNtuple*>(run_action));
             case OutputFormat::soco:
                 return std::make_unique<EventActionSoco>();
             default:
@@ -104,22 +105,20 @@ namespace G4Horus
 
     void ActionInitialization::BuildForMaster() const
     {
-        // release ownerships. Geant4 takes care them.
+        // release ownerships. Geant4 takes care of them.
         G4cout << "Running build for master" << G4endl;
         SetUserAction(create_run_action().release());
-
-        // if (gen_type_ == GeneratorType::cascade)
-        // {
-        //     set_reference_decay();
-        // }
     }
 
     void ActionInitialization::Build() const
     {
         G4cout << "Running build for workers" << G4endl;
-        // release ownerships. Geant4 takes care them.
-        SetUserAction(create_run_action().release());
+        // release ownerships. Geant4 takes care of them.
+        auto run_action = create_run_action();
+        auto event_action = create_event_action(run_action.get());
+        SetUserAction(event_action.release());
+        SetUserAction(run_action.release());
+
         SetUserAction(create_generator_action().release());
-        SetUserAction(create_event_action().release());
     }
 } // namespace G4Horus

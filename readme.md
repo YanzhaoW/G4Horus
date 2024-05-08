@@ -109,13 +109,13 @@ Parameters like detector distances or particle energies are set by different com
 /g4horus/output/type hist # Available options: [hist, ntuple, soco]. Default: hist
 
 # Optional. Specifies the number of bins in the output histograms
-/g4horus/output/hist_bin_num 30000 # default: 1
+/g4horus/output/hist_bin_num 30000 # Default: 1
 
 # Optional. Specifies the minimal value of the output histograms
-/g4horus/output/hist_min 0. MeV # default: 0 MeV
+/g4horus/output/hist_min 0. MeV # Default: 0 MeV
 
 # Optional. Specifies the maximal value of the output histograms
-/g4horus/output/hist_max 3. MeV # default: 1 MeV
+/g4horus/output/hist_max 3. MeV # Default: 1 MeV
 
 # Required. Specifies the JSON file path of the input decay scheme. 
 /g4horus/gun/read_decay_scheme ../test/test.json # Relative or absolute path
