@@ -13,6 +13,7 @@ namespace G4Horus::Cascade
         particle_gun.SetParticlePosition(G4ThreeVector{ 0. * cm, 0. * cm, 0. * cm });
         particle_gun.SetParticleEnergy(0. * keV);
     }
+
     void GeneratorAction::generate_gamma(G4Event* event, const Decay& decay)
     {
 
@@ -36,6 +37,10 @@ namespace G4Horus::Cascade
 
     void GeneratorAction::GeneratePrimaries(G4Event* event)
     {
+        // generate decay_time with uniform distribution
+        const auto& time_window = decay_handler_->get_time_range();
+        decay_time_ = (time_window.second - time_window.first) * G4UniformRand() + time_window.first;
+
         const auto& decay_scheme = decay_handler_->get_decay_scheme();
         const auto* reference_decay = decay_handler_->get_reference_decay();
         if (reference_decay == nullptr)
@@ -67,6 +72,7 @@ namespace G4Horus::Cascade
         particle_gun_.SetParticleMomentumDirection(generate_random_angle_4pi());
         particle_gun_.SetParticleEnergy(gamma_energy * keV);
         particle_gun_.GeneratePrimaryVertex(event);
+        particle_gun_.SetParticleTime(decay_time_);
     }
 
     auto GeneratorAction::check_internal_conversion(const Decay& decay) -> bool

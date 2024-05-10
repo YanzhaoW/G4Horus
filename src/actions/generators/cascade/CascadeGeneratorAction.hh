@@ -24,7 +24,12 @@ namespace G4Horus::Cascade
             decay_scheme_ = std::move(decay_scheme);
             reference_decay_ = nullptr;
         }
+
         void set_enable_sequence(bool is_enabled = true) { is_sequence_enabled_ = is_enabled; }
+
+        void set_time_min(double time) { time_range_.first = time; }
+        void set_time_max(double time) { time_range_.second = time; }
+
         void set_decay(double energy)
         {
             if (decay_scheme_ == nullptr)
@@ -46,9 +51,11 @@ namespace G4Horus::Cascade
         [[nodiscard]] auto get_reference_decay() const -> const Decay* { return reference_decay_; }
         [[nodiscard]] auto get_decay_scheme() const -> const DecayScheme& { return *decay_scheme_; }
         [[nodiscard]] auto has_sequence_enabled() const -> bool { return is_sequence_enabled_; }
+        [[nodiscard]] auto get_time_range() const -> const std::pair<double, double>& { return time_range_; }
 
       private:
         bool is_sequence_enabled_ = true;
+        std::pair<double, double> time_range_;
         std::unique_ptr<DecayScheme> decay_scheme_;
         const Decay* reference_decay_ = nullptr;
     };
@@ -63,6 +70,7 @@ namespace G4Horus::Cascade
 
       private:
         const DecayHandler* decay_handler_ = nullptr;
+        double decay_time_ = 0.;
         G4ParticleGun particle_gun_{ G4Gamma::Definition(), 1 };
 
         // private virtual methods:

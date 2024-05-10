@@ -85,6 +85,20 @@ namespace G4Horus
         set_cascade_mode_ = std::make_unique<G4UIcmdWithABool>("/g4horus/gun/cascade", this);
         set_cascade_mode_->SetGuidance("Set cascade mode.");
         set_cascade_mode_->AvailableForStates(G4State_PreInit, G4State_Idle);
+
+        time_max_ = std::make_unique<G4UIcmdWithADoubleAndUnit>("/g4horus/gun/time_max", this);
+        time_max_->SetGuidance("Set the maximal decay time.");
+        time_max_->SetParameterName("time_max", true);
+        time_max_->SetDefaultUnit("second");
+        time_max_->SetDefaultValue(0.);
+        time_max_->SetUnitCandidates("second");
+
+        time_min_ = std::make_unique<G4UIcmdWithADoubleAndUnit>("/g4horus/gun/time_min", this);
+        time_min_->SetGuidance("Set the minimal decay time.");
+        time_min_->SetParameterName("time_min", true);
+        time_min_->SetDefaultUnit("second");
+        time_min_->SetDefaultValue(0.);
+        time_min_->SetUnitCandidates("second");
     }
 
     void Messenger::SetNewValue(G4UIcommand* command, G4String new_values)
@@ -137,6 +151,16 @@ namespace G4Horus
         if (command == detector_distance_.get())
         {
             app_->set_detector_distance(detector_distance_->GetNewDoubleValue(new_values));
+        }
+
+        if (command == time_max_.get())
+        {
+            app_->set_time_max(time_max_->GetNewDoubleValue(new_values));
+        }
+
+        if (command == time_min_.get())
+        {
+            app_->set_time_min(time_min_->GetNewDoubleValue(new_values));
         }
     }
 } // namespace G4Horus

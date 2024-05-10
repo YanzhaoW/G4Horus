@@ -27,6 +27,8 @@ namespace G4Horus
         void read_decay_scheme_file(std::string_view filename);
         void set_particle_energy(double energy);
         void set_detector_distance(double distance) { detector_distance_ = distance; };
+        void set_time_min(double time) { decay_handler_.set_time_min(time); }
+        void set_time_max(double time) { decay_handler_.set_time_max(time); }
 
         // getters:
         auto get_hist_setting_ref() -> auto& { return hist_setting_; }

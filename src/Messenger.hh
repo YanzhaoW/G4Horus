@@ -33,6 +33,8 @@ namespace G4Horus
         std::unique_ptr<G4UIcmdWithAnInteger> hist_bin_num_;
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> hist_min_;
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> hist_max_;
+        std::unique_ptr<G4UIcmdWithADoubleAndUnit> time_max_;
+        std::unique_ptr<G4UIcmdWithADoubleAndUnit> time_min_;
 
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> detector_distance_;
         Application* app_ = nullptr;
