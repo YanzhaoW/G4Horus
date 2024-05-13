@@ -1,6 +1,5 @@
 #include "Setup.hh"
 #include "G4PhysicalConstants.hh"
-#include <numeric>
 #include <utility>
 
 Setup::Setup(G4LogicalVolume* theMother, std::map<std::string, coordinate> positions)
@@ -25,7 +24,7 @@ void Setup::PlaceDetector(const std::string& det_id,
                           const std::vector<Filter::_filter>& filters)
 {
     // Place HPGe
-    const auto thedet = DetectorLibrary::GetDetector(det_id, position);
+    auto const* thedet = DetectorLibrary::GetDetector(det_id, position).release();
 
     for (const auto& filter_spec : filters)
     {
@@ -44,19 +43,22 @@ void Setup::PlaceDetector(const BGO::_type& bgo,
                           const std::vector<Filter::_filter>& filters)
 {
     // Place BGO
-    const auto thebgo = new BGO(bgo, position);
+    auto const* thebgo = new BGO(bgo, position);
 
-    for (const auto& f : filters)
+    for (const auto& filter_spec : filters)
     {
-        const Filter filter{ f, thebgo->GetWidth() };
-        Place(filter.GetLogical(), position + "_BGO_filter_" + f.material, position, distance + filter.GetOffset());
-        distance += f.length;
+        const auto filter = Filter{ filter_spec, thebgo->GetWidth() };
+        Place(filter.GetLogical(),
+              position + "_BGO_filter_" + filter_spec.material,
+              position,
+              distance + filter.GetOffset());
+        distance += filter_spec.length;
     }
 
     Place(thebgo->GetLogical(), position, position, distance + thebgo->GetOffset());
 }
 
-const Setup::coordinate Setup::CoordinateForPosition(const std::string& position) const
+auto Setup::CoordinateForPosition(const std::string& position) const -> coordinate
 {
     auto _pos = fPositions.find(position);
     if (_pos == fPositions.end())
@@ -69,14 +71,14 @@ const Setup::coordinate Setup::CoordinateForPosition(const std::string& position
     return _pos->second;
 }
 
-G4Transform3D Setup::GetTransform(const coordinate& pos, const G4double& distance) const
+auto Setup::GetTransform(const coordinate& pos, const G4double& distance) const -> G4Transform3D
 {
-    G4ThreeVector moveto;
+    auto moveto = G4ThreeVector{};
     moveto.setRThetaPhi(distance, pos.theta, pos.phi);
 
     const auto rotation_axis = G4ThreeVector(0, 0, -1).cross(moveto).unit();
-    const G4double rotation_angle = acos(G4ThreeVector(0, 0, -1).dot(moveto) / moveto.mag()) + pi;
-    const G4RotationMatrix rm(rotation_axis, rotation_angle);
+    const auto rotation_angle = acos(G4ThreeVector(0, 0, -1).dot(moveto) / moveto.mag()) + pi;
+    const auto rotation_matrix = G4RotationMatrix{ rotation_axis, rotation_angle };
 
-    return G4Transform3D(rm, moveto);
+    return G4Transform3D{ rotation_matrix, moveto };
 }
