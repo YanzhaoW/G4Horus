@@ -1,4 +1,5 @@
 #include "EventActionHistogram.hh"
+#include "G4THitsMap.hh"
 #include "G4AnalysisManager.hh"
 #include "G4Event.hh"
 #include "G4SDManager.hh"

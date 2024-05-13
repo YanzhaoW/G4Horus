@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
 
 project(G4Horus)
 
+if(NOT APPLE)
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON)
+    message(STATUS "Interprocedural optimization enabled")
+else()
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION OFF)
+    message(STATUS "Interprocedural optimization is disabled for Mac OS")
+endif()
+
 # Find Geant4 package, require all available UI and Vis drivers by default
 find_package(Geant4 REQUIRED COMPONENTS ui_all vis_all multithreaded)
 find_package(CLI11 REQUIRED)
@@ -30,8 +38,12 @@ add_subdirectory(src)
 
 # Add the executable, and link it to the Geant4 libraries
 add_executable(${PROJECT_NAME} main.cc)
-target_link_libraries(${PROJECT_NAME} G4Horus::construction G4Horus::actions ${Geant4_LIBRARIES}
-                      CLI11::CLI11 assimp)
+target_link_libraries(
+    ${PROJECT_NAME}
+    G4Horus::construction
+    G4Horus::actions
+    ${Geant4_LIBRARIES}
+    CLI11::CLI11)
 set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION True)
 
 enable_testing()

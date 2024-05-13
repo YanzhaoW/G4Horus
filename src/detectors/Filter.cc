@@ -12,14 +12,14 @@ Filter::Filter(const Filter::_filter& f, G4double width)
 Filter::Filter(const std::string& material, G4double length, G4double diameter)
     : Detector("Filter", length)
 {
-    fWidth = diameter;
+    SetWidth(diameter);
 
-    auto sV = new G4Tubs(fName + "_filter_solid_" + material, 0, diameter / 2., length / 2., 0. * deg, 360. * deg);
-    auto lV = new G4LogicalVolume(sV, G4Material::GetMaterial(material), fName + "_filter_logical_" + material);
+    auto sV = new G4Tubs(GetName() + "_filter_solid_" + material, 0, diameter / 2., length / 2., 0. * deg, 360. * deg);
+    auto lV = new G4LogicalVolume(sV, G4Material::GetMaterial(material), GetName() + "_filter_logical_" + material);
 
     auto vis = G4VisAttributes(G4Color(1., 0.5, 0));
     vis.SetForceSolid(true);
     lV->SetVisAttributes(vis);
 
-    fDetectorLV = lV;
+    SetLogical(lV);
 }

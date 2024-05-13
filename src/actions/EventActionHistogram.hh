@@ -1,6 +1,5 @@
 #pragma once
 
-#include "G4THitsMap.hh"
 #include "G4UserEventAction.hh"
 #include <vector>
 
@@ -11,5 +10,5 @@ class EventActionHistogram : public G4UserEventAction {
 
   private:
     bool fIDsCached;
-    std::vector<G4int> fHitCollectionIDs;
+    std::vector<int> fHitCollectionIDs;
 };

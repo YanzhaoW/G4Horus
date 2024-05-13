@@ -1,5 +1,7 @@
 #include "Horus.hh"
+#include "G4SystemOfUnits.hh"
 
+// NOLINTBEGIN(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 // clang-format off
 Horus::Horus(G4LogicalVolume* theMother)
     : Setup(theMother, {{"Ge00",  { 90. * deg,   0. * deg}},
@@ -34,3 +36,4 @@ Horus::Horus(G4LogicalVolume* theMother)
 // clang-format on
 {
 }
+// NOLINTEND(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)

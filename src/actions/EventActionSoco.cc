@@ -1,4 +1,6 @@
 #include "EventActionSoco.hh"
+#include <type_traits>
+#include "G4THitsMap.hh"
 #include "G4Event.hh"
 #include "G4SDManager.hh"
 #include "SocoAnalysisManager.hh"

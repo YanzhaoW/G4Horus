@@ -11,7 +11,7 @@ class DetectorLibrary {
   public:
     DetectorLibrary() = default;
 
-    Detector *GetDetector(const std::string &id, const std::string &position) const;
+    static auto GetDetector(const std::string &det_id, const std::string &position) -> std::unique_ptr<Detector>;
 
     static const std::map<std::string, HPGe::_spec> specifications;
 };
