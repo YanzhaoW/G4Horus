@@ -99,6 +99,12 @@ namespace G4Horus
         time_min_->SetDefaultUnit("second");
         time_min_->SetDefaultValue(0.);
         time_min_->SetUnitCandidates("second");
+
+        physics_list_ = std::make_unique<G4UIcmdWithAString>("/g4horus/physics_list", this);
+        physics_list_->SetGuidance("Specify the physics list.");
+        physics_list_->SetParameterName("physics_list", true);
+        physics_list_->SetDefaultValue("QGSP_BERT_EMV");
+        physics_list_->AvailableForStates(G4State_PreInit);
     }
 
     void Messenger::SetNewValue(G4UIcommand* command, G4String new_values)
@@ -131,6 +137,11 @@ namespace G4Horus
         if (command == generator_file_name.get())
         {
             app_->read_decay_scheme_file(new_values);
+        }
+
+        if (command == physics_list_.get())
+        {
+            app_->set_physics_list(new_values);
         }
 
         if (command == generator_type_.get())

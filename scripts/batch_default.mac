@@ -5,6 +5,8 @@
 /g4horus/gun/read_decay_scheme ../test/test.json
 /g4horus/detector/distance 1.3 cm
 /g4horus/gun/type cascade
+/g4horus/physics_list QGSP_BERT_EMV
+
 /g4horus/init
 
 /g4horus/gun/energy 919.337

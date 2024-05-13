@@ -1,5 +1,6 @@
 #include "Setup.hh"
 #include "G4PhysicalConstants.hh"
+#include <fmt/format.h>
 #include <utility>
 
 Setup::Setup(G4LogicalVolume* theMother, std::map<std::string, coordinate> positions)

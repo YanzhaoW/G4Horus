@@ -29,6 +29,7 @@ namespace G4Horus
         void set_detector_distance(double distance) { detector_distance_ = distance; };
         void set_time_min(double time) { decay_handler_.set_time_min(time); }
         void set_time_max(double time) { decay_handler_.set_time_max(time); }
+        void set_physics_list(std::string_view list_name) { physics_list_ = list_name; }
 
         // getters:
         auto get_hist_setting_ref() -> auto& { return hist_setting_; }
@@ -47,6 +48,7 @@ namespace G4Horus
         double particle_energy_ = 0.;
         Cascade::DecayHandler decay_handler_;
         std::string macro_file_;
+        std::string physics_list_ = "QGSP_BERT_EMV";
         OutputFormat output_format_ = OutputFormat::hist;
         GeneratorType gen_type_ = GeneratorType::single;
         HistogramRunActionSetting hist_setting_;

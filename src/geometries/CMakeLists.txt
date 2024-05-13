@@ -12,5 +12,5 @@ add_library(${PROJECT_NAME}
             SonicV3.cc
             SonicV3dEE.cc)
 add_library(G4Horus::geometries ALIAS ${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME} G4Horus::detectors)
+target_link_libraries(${PROJECT_NAME} G4Horus::detectors fmt::fmt)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

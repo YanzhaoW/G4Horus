@@ -36,6 +36,8 @@ namespace G4Horus
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> time_max_;
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> time_min_;
 
+        std::unique_ptr<G4UIcmdWithAString> physics_list_;
+
         std::unique_ptr<G4UIcmdWithADoubleAndUnit> detector_distance_;
         Application* app_ = nullptr;
 

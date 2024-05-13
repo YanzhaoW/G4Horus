@@ -126,6 +126,9 @@ Parameters like detector distances or particle energies are set by different com
 # Optional. Specifies the type of the event generator. 
 /g4horus/gun/type cascade # Available options: [single, cascade, scattering]. Default: cascade
 
+# Optional. Specifies the physics list.
+/g4horus/physics_list QGSP_BERT_EMV # Available options: see below. Default: QGSP_BERT_EMV
+
 # Required. initialization
 /g4horus/init
 
@@ -146,3 +149,37 @@ Parameters like detector distances or particle energies are set by different com
 ```
 
 The generation of the JSON file can be done in this [program](https://github.com/YanzhaoW/NuclearChartConverter).
+
+### Physics lists:
+
+Available base options:
+
+* CHIPS
+* FTFP_BERT
+* FTFP_BERT_TRV
+* FTFP_BERT_HP
+* FTF_BIC
+* LBE
+* LHEP
+* QBBC
+* QGSC_BERT
+* QGSP
+* QGSP_BERT
+* QGSP_BERT_CHIPS
+* QGSP_BERT_HP
+* QGSP_BIC
+* QGSP_BIC_HP
+* QGSP_FTFP_BERT
+* QGS_BIC
+* QGSP_INCLXX
+* Shielding
+
+Available suffixes:
+
+* _EMV
+* _EMX
+* _EMY
+* _EMZ
+* _LIV
+* _PEN
+

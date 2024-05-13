@@ -1,6 +1,7 @@
 #include "G4Horus.hh"
 #include "DetectorConstruction.hh"
 #include "G4HadronicProcessStore.hh"
+#include "G4PhysListFactory.hh"
 #include "G4UIExecutive.hh"
 #include "G4UImanager.hh"
 #include "G4VisExecutive.hh"
@@ -30,10 +31,9 @@ namespace G4Horus
         detector_construction->set_detector_distance(detector_distance_);
         run_manager_->SetUserInitialization(detector_construction.release());
 
-        // run_manager->SetUserInitialization(new PhysicsList());
-
-        auto shield = std::make_unique<Shielding>(0);
-        run_manager_->SetUserInitialization(shield.release()); // includes G4RadioactiveDecay
+        auto physListFactory = G4PhysListFactory{};
+        G4VUserPhysicsList* physicsList = physListFactory.GetReferencePhysList(physics_list_);
+        run_manager_->SetUserInitialization(physicsList);
 
         init_actions();
 
