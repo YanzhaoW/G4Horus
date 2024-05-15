@@ -1,36 +1,42 @@
 #include "EventActionNtuple.hh"
+#include "Definitions.hh"
 #include "G4AnalysisManager.hh"
 #include "G4Event.hh"
 #include "G4SDManager.hh"
 #include "RunActionNtuple.hh"
+#include <CloverHit.hh>
 #include <G4THitsMap.hh>
+#include <fmt/format.h>
 #include <numeric>
+#include <ranges>
 
 extern const std::vector<std::string> detectors;
+
+namespace rng = std::ranges;
+
 namespace G4Horus
 {
-    inline auto GetHitsCollection(const int detector_id, const G4Event* event) -> G4THitsMap<double>*
+    namespace
     {
-        auto* hits_collection = dynamic_cast<G4THitsMap<G4double>*>(event->GetHCofThisEvent()->GetHC(detector_id));
-
-        if (hits_collection == nullptr)
+        auto get_minimal_time(const std::vector<CloverHit>& hits) -> double
         {
-            G4ExceptionDescription msg;
-            msg << "Cannot access hits collection with ID: " << detector_id;
-            G4Exception("EventActionNtuple::GetHitsCollection()", "#EA001", FatalException, msg);
+            return rng::min(hits, rng::less{}, [](const auto& hit) { return hit.get_time(); }).get_time();
         }
 
-        return hits_collection;
-    }
+        auto get_total_energy(const std::vector<CloverHit>& hits) -> double
+        {
+            return std::accumulate(hits.begin(),
+                                   hits.end(),
+                                   double{},
+                                   [](double init, const auto& hit) { return init + hit.get_energy(); });
+        }
 
-    inline auto GetSum(const G4THitsMap<double>* hits) -> double
-    {
-        return std::accumulate(hits->GetMap()->begin(),
-                               hits->GetMap()->end(),
-                               0.,
-                               [](const G4double sum, const std::pair<G4int, G4double*>& point)
-                               { return sum + *(point.second); });
-    }
+        auto get_max_energy_position(const std::vector<CloverHit>& hits) -> G4ThreeVector
+        {
+            return rng::max(hits, rng::greater{}, [](const auto& hit) { return hit.get_energy(); }).get_position();
+        }
+
+    } // namespace
 
     EventActionNtuple::EventActionNtuple(RunActionNtuple* run_action)
         : fIDsCached(false)
@@ -40,23 +46,44 @@ namespace G4Horus
 
     void EventActionNtuple::EndOfEventAction(const G4Event* event)
     {
-        // if (!fIDsCached)
-        // {
-        //     for (const auto& det : detectors)
-        //     {
-        //         fHitCollectionIDs.push_back(G4SDManager::GetSDMpointer()->GetCollectionID(det + "/edep"));
-        //     }
-        //     fIDsCached = true;
-        // }
+        auto* hit_collection = event->GetHCofThisEvent();
+        if (hit_collection == nullptr)
+        {
+            return;
+        }
+        const auto& ntuple_colume_id_map = run_action_->GetColumnIdMap();
+        auto* analysis_manager = G4AnalysisManager::Instance();
+        for (int num_col{}; num_col < hit_collection->GetNumberOfCollections(); ++num_col)
+        {
+            const auto* collection = dynamic_cast<CloverHitsMap*>(hit_collection->GetHC(num_col));
+            if (collection->GetName() == CLOVER_HIT_COLLECTION_NAME)
+            {
+                const auto& sd_name = collection->GetSDname();
+                for (const auto& [_, hits] : collection->get_map())
+                {
+                    const auto hit_size = hits.size();
+                    if (hit_size == 0)
+                    {
+                        continue;
+                    }
+                    const auto total_energy = get_total_energy(hits);
+                    const auto earliest_time = get_minimal_time(hits);
+                    const auto max_energy_position = get_max_energy_position(hits);
 
-        // auto* analysisManager = G4AnalysisManager::Instance();
-        // const size_t ndets = detectors.size();
-        // for (size_t i = 0; i < ndets; i++)
-        // {
-        //     const G4double edep = GetSum(GetHitsCollection(fHitCollectionIDs.at(i), event));
-        //     analysisManager->FillH1(i, edep);
-        //     analysisManager->FillNtupleDColumn(i, edep);
-        // }
-        // analysisManager->AddNtupleRow();
+                    analysis_manager->FillNtupleDColumn(ntuple_colume_id_map.at(NTupleColumn::time), earliest_time);
+                    analysis_manager->FillNtupleDColumn(ntuple_colume_id_map.at(NTupleColumn::energy), total_energy);
+                    analysis_manager->FillNtupleIColumn(ntuple_colume_id_map.at(NTupleColumn::size),
+                                                        static_cast<int>(hit_size));
+                    analysis_manager->FillNtupleSColumn(ntuple_colume_id_map.at(NTupleColumn::detector), sd_name);
+                    analysis_manager->FillNtupleDColumn(ntuple_colume_id_map.at(NTupleColumn::position_x),
+                                                        max_energy_position.x());
+                    analysis_manager->FillNtupleDColumn(ntuple_colume_id_map.at(NTupleColumn::position_y),
+                                                        max_energy_position.y());
+                    analysis_manager->FillNtupleDColumn(ntuple_colume_id_map.at(NTupleColumn::position_z),
+                                                        max_energy_position.z());
+                    analysis_manager->AddNtupleRow();
+                }
+            }
+        }
     }
 } // namespace G4Horus

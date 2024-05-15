@@ -92,33 +92,35 @@ namespace G4Horus
     {
         for (const auto& det : detectors)
         {
-            auto* activeVolume = new G4MultiFunctionalDetector(det);
-            G4SDManager::GetSDMpointer()->AddNewDetector(activeVolume);
-            activeVolume->RegisterPrimitive(new G4PSEnergyDeposit("edep"));
+            // auto* activeVolume = new G4MultiFunctionalDetector(det);
+            // G4SDManager::GetSDMpointer()->AddNewDetector(activeVolume);
+            // activeVolume->RegisterPrimitive(new G4PSEnergyDeposit("edep"));
 
-            // auto clover_sensitive = std::make_unique<CloverSD>();
+            auto clover_sensitive = std::make_unique<CloverSD>(det);
+            G4SDManager::GetSDMpointer()->AddNewDetector(clover_sensitive.get());
 
-            if (det.rfind("BGO", 0) == 0)
-            {
-                SetSensitiveDetector("BGO_" + det + "_bgo_lv", activeVolume);
-                continue;
-            }
-            if (det.rfind("Si", 0) == 0)
-            {
-                SetSensitiveDetector("PIPS_" + det + "_active_logical", activeVolume);
-                continue;
-            }
-            if (det.rfind("Ge", 0) == 0)
-            {
-                SetSensitiveDetector("HPGe_" + det + "_crystal_logical", activeVolume);
-                continue;
-            }
+            // if (det.rfind("BGO", 0) == 0)
+            // {
+            //     SetSensitiveDetector("BGO_" + det + "_bgo_lv", activeVolume);
+            //     continue;
+            // }
+            // if (det.rfind("Si", 0) == 0)
+            // {
+            //     SetSensitiveDetector("PIPS_" + det + "_active_logical", activeVolume);
+            //     continue;
+            // }
             if (det.rfind('A', 0) == 0 || det.rfind('B', 0) == 0)
             {
                 // SetSensitiveDetector("HPGe_" + det + "_crystal_logical", clover_sensitive.release());
-                SetSensitiveDetector("HPGe_" + det + "_crystal_logical", activeVolume);
+                G4cout << fmt::format("setting HPGe_{}_crystal_logical to clover sensitive", det) << G4endl;
+                SetSensitiveDetector("HPGe_" + det + "_crystal_logical", clover_sensitive.release());
                 continue;
             }
+            // if (det.rfind("Ge", 0) == 0)
+            // {
+            //     SetSensitiveDetector("HPGe_" + det + "_crystal_logical", activeVolume);
+            //     continue;
+            // }
 
             G4Exception(
                 "DetectorConstruction::ConstructSDandField", "Unknown detector type", FatalException, det.c_str());

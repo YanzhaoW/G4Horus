@@ -16,6 +16,6 @@ add_library(
 add_library(G4Horus::actions ALIAS ${PROJECT_NAME})
 target_link_libraries(
     ${PROJECT_NAME}
-    PRIVATE G4Horus::soco
-    PUBLIC G4Horus::generators)
+    PRIVATE G4Horus::soco G4Horus::definitions
+    PUBLIC G4Horus::generators G4Horus::sensitives)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

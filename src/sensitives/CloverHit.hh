@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Definitions.hh"
 #include "G4SystemOfUnits.hh"
 #include <G4THitsMap.hh>
 #include <G4ThreeVector.hh>
@@ -15,7 +16,7 @@ namespace G4Horus
       public:
         CloverHit() = default;
 
-        static constexpr auto collection_name = std::string_view{ "CloverHits" };
+        static constexpr auto collection_name = CLOVER_HIT_COLLECTION_NAME;
 
         // Setters:
         void set_time(double time) { time_ = time; }
@@ -92,3 +93,34 @@ namespace G4Horus
 
     using CloverHitsMap = HitsMap<int, CloverHit>;
 } // namespace G4Horus
+
+// template <>
+// class fmt::formatter<CLHEP::Hep3Vector>
+// {
+//   public:
+//     static constexpr auto parse(format_parse_context& ctx) { return ctx.end(); }
+//     template <typename FmtContent>
+//     constexpr auto format(CLHEP::Hep3Vector& vector, FmtContent& ctn) const
+//     {
+//         return format_to(ctn.out(), "[x: {}, y: {}, z: {}]", vector.x(), vector.y(), vector.z());
+//     }
+// };
+
+template <>
+class fmt::formatter<G4Horus::CloverHit>
+{
+  public:
+    static constexpr auto parse(format_parse_context& ctx) { return ctx.end(); }
+    template <typename FmtContent>
+    constexpr auto format(const G4Horus::CloverHit& hit, FmtContent& ctn) const
+    {
+        const auto& vector = hit.get_position();
+        return fmt::format_to(ctn.out(),
+                              "{{energy level: {} keV, time: {} ns, position: [x: {} cm, y: {} cm, z: {} cm]}}",
+                              hit.get_energy() / keV,
+                              hit.get_time() / ns,
+                              vector.x() / cm,
+                              vector.y() / cm,
+                              vector.z() / cm);
+    }
+};

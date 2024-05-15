@@ -1,3 +1,4 @@
+add_subdirectory(definitions)
 add_subdirectory(actions)
 add_subdirectory(sensitives)
 add_subdirectory(detectors)

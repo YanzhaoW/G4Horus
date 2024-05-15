@@ -1,5 +1,6 @@
 #include "CloverSD.hh"
 #include <G4SDManager.hh>
+#include <fmt/format.h>
 
 namespace G4Horus
 {
@@ -7,15 +8,16 @@ namespace G4Horus
         : G4VSensitiveDetector(name.data())
     {
         collectionName.push_back(CloverHit::collection_name.data());
-        hit_map_ = std::make_unique<CloverHitsMap>(SensitiveDetectorName, CloverHit::collection_name.data());
-        hit_map_->add_keys<4>({ 0, 1, 2, 3 });
+        // hit_map_ = std::make_unique<CloverHitsMap>(SensitiveDetectorName, CloverHit::collection_name.data());
     }
 
     void CloverSD::Initialize(G4HCofThisEvent* hit_collections)
     {
-        hit_map_->clear_values();
-        auto collection_id = G4SDManager::GetSDMpointer()->GetCollectionID(hit_map_.get());
-        hit_collections->AddHitsCollection(collection_id, hit_map_.get());
+        auto hit_map = std::make_unique<CloverHitsMap>(SensitiveDetectorName, CloverHit::collection_name.data());
+        hit_map->add_keys<1>({ 0 });
+        auto collection_id = G4SDManager::GetSDMpointer()->GetCollectionID(hit_map.get());
+        hit_map_ = hit_map.get();
+        hit_collections->AddHitsCollection(collection_id, hit_map.release());
     }
 
     auto CloverSD::ProcessHits(G4Step* step, G4TouchableHistory* /*unused*/) -> bool

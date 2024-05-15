@@ -27,5 +27,4 @@ namespace G4Horus
         G4bool is_overlap_checked_ = true;
         double detector_distance_ = 1. * cm;
     };
-
 } // namespace G4Horus

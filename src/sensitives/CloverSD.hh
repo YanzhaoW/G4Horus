@@ -11,7 +11,7 @@ namespace G4Horus
         explicit CloverSD(std::string_view name = "CloverSD");
 
       private:
-        std::unique_ptr<CloverHitsMap> hit_map_;
+        CloverHitsMap* hit_map_ = nullptr;
 
         void Initialize(G4HCofThisEvent* hit_collections) override;
         auto ProcessHits(G4Step* step, G4TouchableHistory* /*unused*/) -> bool override;
