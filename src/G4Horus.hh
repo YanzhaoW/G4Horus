@@ -2,7 +2,9 @@
 
 #include "ActionInitialization.hh"
 #include "Messenger.hh"
-#include <G4MTRunManager.hh>
+
+#include <CLHEP/Random/RanecuEngine.h>
+#include <G4RunManager.hh>
 #include <G4SystemOfUnits.hh>
 #include <memory>
 #include <string>
@@ -11,6 +13,14 @@ class G4UImanager;
 
 namespace G4Horus
 {
+    struct nop
+    {
+        template <typename T>
+        void operator()(T const& /*unused*/) const noexcept
+        {
+            G4cout << "No deletion of run manager" << G4endl;
+        }
+    };
 
     class Application
     {
@@ -29,7 +39,7 @@ namespace G4Horus
         void set_detector_distance(double distance) { detector_distance_ = distance; };
         void set_time_min(double time) { decay_handler_.set_time_min(time); }
         void set_time_max(double time) { decay_handler_.set_time_max(time); }
-        void set_physics_list(std::string_view list_name) { physics_list_ = list_name; }
+        void set_physics_list(std::string_view list_name) { physics_list_str_ = list_name; }
 
         // getters:
         auto get_hist_setting_ref() -> auto& { return hist_setting_; }
@@ -48,14 +58,16 @@ namespace G4Horus
         double particle_energy_ = 0.;
         Cascade::DecayHandler decay_handler_;
         std::string macro_file_;
-        std::string physics_list_ = "QGSP_BERT_EMV";
+        std::string physics_list_str_ = "QGSP_BERT_EMV";
         OutputFormat output_format_ = OutputFormat::hist;
         GeneratorType gen_type_ = GeneratorType::single;
         HistogramRunActionSetting hist_setting_;
-        std::unique_ptr<G4MTRunManager> run_manager_;
+        std::unique_ptr<G4RunManager> run_manager_;
         std::unique_ptr<CLHEP::RanecuEngine> random_engine_ = std::make_unique<CLHEP::RanecuEngine>();
         Messenger messnger_{ this };
 
         void init_actions();
+        void init_physics_list();
+        void init_detector_construction();
     };
 } // namespace G4Horus

@@ -1,11 +1,11 @@
-/g4horus/output/type hist
+/g4horus/output/type ntuple
 /g4horus/output/hist_bin_num 30000
 /g4horus/output/hist_min 0. MeV
 /g4horus/output/hist_max 3. MeV
 /g4horus/gun/read_decay_scheme ../test/test.json
 /g4horus/detector/distance 1.3 cm
 /g4horus/gun/type cascade
-/g4horus/physics_list QGSP_BERT_EMV
+/g4horus/physics_list Shielding
 
 /g4horus/init
 

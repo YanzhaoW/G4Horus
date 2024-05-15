@@ -13,6 +13,7 @@ namespace G4Horus
         analysis_manager_->SetNtupleMerging(true);
         analysis_manager_->SetVerboseLevel(0);
         analysis_manager_->SetNtupleRowWise(false, false);
+        analysis_manager_->SetDefaultFileType("root");
 
         G4cout << "Output: Using " << analysis_manager_->GetType() << " with ntuple" << G4endl;
 

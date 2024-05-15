@@ -1,12 +1,13 @@
 #include "G4Horus.hh"
 #include "DetectorConstruction.hh"
-#include "G4HadronicProcessStore.hh"
-#include "G4PhysListFactory.hh"
-#include "G4UIExecutive.hh"
-#include "G4UImanager.hh"
-#include "G4VisExecutive.hh"
-#include "Shielding.hh"
-// #include "QGSP_INCLXX.hh"
+
+#include <G4HadronicProcessStore.hh>
+#include <G4PhysListFactory.hh>
+#include <G4RunManagerFactory.hh>
+#include <G4UIExecutive.hh>
+#include <G4UImanager.hh>
+#include <G4VisExecutive.hh>
+#include <Shielding.hh>
 
 #include <chrono>
 #include <filesystem>
@@ -21,20 +22,12 @@ namespace G4Horus
 
         // Silence hadronic processes summary
         G4HadronicProcessStore::Instance()->SetVerbose(verbose_level_);
-
-        run_manager_ = std::make_unique<G4MTRunManager>();
+        run_manager_ = std::unique_ptr<G4RunManager>(G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default));
         run_manager_->SetVerboseLevel(verbose_level_);
 
         // SetUserInitialization claims the onwership
-
-        auto detector_construction = std::make_unique<DetectorConstruction>(false);
-        detector_construction->set_detector_distance(detector_distance_);
-        run_manager_->SetUserInitialization(detector_construction.release());
-
-        auto physListFactory = G4PhysListFactory{};
-        G4VUserPhysicsList* physicsList = physListFactory.GetReferencePhysList(physics_list_);
-        run_manager_->SetUserInitialization(physicsList);
-
+        init_detector_construction();
+        init_physics_list();
         init_actions();
 
         run_manager_->SetNumberOfThreads(num_of_threads_);
@@ -70,6 +63,22 @@ namespace G4Horus
         action->SetDecayHandler(&decay_handler_);
         action->SetHistogramSetting(&hist_setting_);
         run_manager_->SetUserInitialization(action.release());
+    }
+
+    void Application::init_physics_list()
+    {
+        auto physics_list_factory = G4PhysListFactory{};
+        physics_list_factory.SetVerbose(verbose_level_);
+        G4VUserPhysicsList* physics_list = physics_list_factory.GetReferencePhysList(physics_list_str_);
+        run_manager_->SetUserInitialization(physics_list);
+    }
+
+    void Application::init_detector_construction()
+    {
+
+        auto detector_construction = std::make_unique<DetectorConstruction>(false);
+        detector_construction->set_detector_distance(detector_distance_);
+        run_manager_->SetUserInitialization(detector_construction.release());
     }
 
     void Application::launch_visual_mode(int argc, char** argv)

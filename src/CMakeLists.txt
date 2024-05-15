@@ -1,4 +1,5 @@
 add_subdirectory(actions)
+add_subdirectory(sensitives)
 add_subdirectory(detectors)
 add_subdirectory(soco)
 add_subdirectory(geometries)
@@ -12,5 +13,6 @@ target_link_libraries(
     G4Horus::detectors
     G4Horus::actions
     G4Horus::soco
-    G4Horus::geometries)
+    G4Horus::geometries
+    G4Horus::sensitives)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
