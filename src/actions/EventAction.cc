@@ -37,13 +37,13 @@ namespace G4Horus
 
     } // namespace
 
-    EventActionNtuple::EventActionNtuple(RunActionNtuple* run_action, int verbose_level)
+    EventAction::EventAction(RunAction* run_action, int verbose_level)
         : verbose_level_{ verbose_level }
         , run_action_{ run_action }
     {
     }
 
-    void EventActionNtuple::EndOfEventAction(const G4Event* event)
+    void EventAction::EndOfEventAction(const G4Event* event)
     {
         auto* hit_collection = event->GetHCofThisEvent();
         if (hit_collection == nullptr)
@@ -68,7 +68,7 @@ namespace G4Horus
         }
     }
 
-    void EventActionNtuple::write_data(const std::vector<CloverHit>& hits, std::string_view sd_name)
+    void EventAction::write_data(const std::vector<CloverHit>& hits, std::string_view sd_name)
     {
         auto* analysis_manager = G4AnalysisManager::Instance();
         const auto& ntuple_colume_id_map = run_action_->GetColumnIdMap();

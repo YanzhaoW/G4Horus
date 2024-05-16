@@ -29,13 +29,13 @@ namespace G4Horus
 
     auto ActionInitialization::create_run_action() const -> std::unique_ptr<G4UserRunAction>
     {
-        return std::make_unique<RunActionNtuple>(run_action_setting_, verbose_level_);
+        return std::make_unique<RunAction>(run_action_setting_, verbose_level_);
     }
 
     auto ActionInitialization::create_event_action(G4UserRunAction* run_action) const
         -> std::unique_ptr<G4UserEventAction>
     {
-        return std::make_unique<EventActionNtuple>(dynamic_cast<RunActionNtuple*>(run_action), verbose_level_);
+        return std::make_unique<EventAction>(dynamic_cast<RunAction*>(run_action), verbose_level_);
     }
 
     auto ActionInitialization::create_generator_action() const -> std::unique_ptr<G4VUserPrimaryGeneratorAction>

@@ -21,10 +21,10 @@ namespace G4Horus
         detector
     };
 
-    class RunActionNtuple : public G4UserRunAction
+    class RunAction : public G4UserRunAction
     {
       public:
-        explicit RunActionNtuple(const G4Horus::RunActionSetting* setting, int verbose_level);
+        explicit RunAction(const G4Horus::RunActionSetting* setting, int verbose_level);
 
         void BeginOfRunAction(const G4Run* /*aRun*/) override;
         void EndOfRunAction(const G4Run* /*aRun*/) override;

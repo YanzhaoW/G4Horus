@@ -8,7 +8,7 @@ namespace G4Horus
 {
     constexpr auto DETECTOR_NAMES = CLOVER_DETECTOR_NAMES;
 
-    RunActionNtuple::RunActionNtuple(const RunActionSetting* setting, int verbose_level)
+    RunAction::RunAction(const RunActionSetting* setting, int verbose_level)
         : verbose_level_{ verbose_level }
         , setting_{ setting }
     {
@@ -34,15 +34,15 @@ namespace G4Horus
         }
     }
 
-    void RunActionNtuple::BeginOfRunAction(const G4Run* /*aRun*/) { analysis_manager_->OpenFile(); }
+    void RunAction::BeginOfRunAction(const G4Run* /*aRun*/) { analysis_manager_->OpenFile(); }
 
-    void RunActionNtuple::EndOfRunAction(const G4Run* /*aRun*/)
+    void RunAction::EndOfRunAction(const G4Run* /*aRun*/)
     {
         analysis_manager_->Write();
         analysis_manager_->CloseFile();
     }
 
-    void RunActionNtuple::setup_ntuple(G4AnalysisManager* analysis_manager)
+    void RunAction::setup_ntuple(G4AnalysisManager* analysis_manager)
     {
         G4cout << "ntuple output has been enabled" << G4endl;
         analysis_manager->SetNtupleMerging(true);
@@ -68,7 +68,7 @@ namespace G4Horus
         analysis_manager_->FinishNtuple();
     }
 
-    void RunActionNtuple::setup_histogram(G4AnalysisManager* analysis_manager)
+    void RunAction::setup_histogram(G4AnalysisManager* analysis_manager)
     {
         G4cout << "Histogram output has been enabled" << G4endl;
         analysis_manager->SetHistoDirectoryName("histograms");
@@ -80,7 +80,7 @@ namespace G4Horus
         }
     }
 
-    void RunActionNtuple::setup_soco(G4AnalysisManager* analysis_manager)
+    void RunAction::setup_soco(G4AnalysisManager* analysis_manager)
     {
         G4cout << "soco output has been enabled" << G4endl;
         analysis_manager->SetHistoDirectoryName("soco");
