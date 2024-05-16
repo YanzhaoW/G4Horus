@@ -5,12 +5,10 @@ add_subdirectory(generators)
 add_library(
     ${PROJECT_NAME}
     ActionInitialization.cc
-    EventActionHistogram.cc
-    EventActionNtuple.cc
+    EventAction.cc
     EventActionSoco.cc
     PhysicsList.cc
-    RunActionHistogram.cc
-    RunActionNtuple.cc
+    RunAction.cc
     RunActionSoco.cc)
 
 add_library(G4Horus::actions ALIAS ${PROJECT_NAME})

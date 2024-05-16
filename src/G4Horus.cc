@@ -59,9 +59,9 @@ namespace G4Horus
 
     void Application::init_actions()
     {
-        auto action = std::make_unique<ActionInitialization>(gen_type_, output_format_);
+        auto action = std::make_unique<ActionInitialization>(gen_type_, verbose_level_);
         action->SetDecayHandler(&decay_handler_);
-        action->SetHistogramSetting(&hist_setting_);
+        action->SetRunActionSetting(&run_setting_);
         run_manager_->SetUserInitialization(action.release());
     }
 
@@ -100,5 +100,20 @@ namespace G4Horus
         auto time_end = std::chrono::steady_clock::now();
         G4cout << "Batch mode runs succesfully!" << G4endl;
         G4cout << fmt::format("Time spent: {:%H h, %M min, %S sec}", time_end - time_start) << G4endl;
+    }
+    void Application::set_output_format(std::string_view format)
+    {
+        if (format.contains("hist"))
+        {
+            run_setting_.is_hist_enabled = true;
+        }
+        if (format.contains("soco"))
+        {
+            run_setting_.is_soco_enabled = true;
+        }
+        if (format.contains("ntuple"))
+        {
+            run_setting_.is_tuple_enabled = true;
+        }
     }
 } // namespace G4Horus

@@ -104,18 +104,20 @@ Batch mode provides simulated data according to the user configurations defined 
 Parameters like detector distances or particle energies are set by different commands in a macro file. Some (pre-init) commands can only be used before the initialization command (`/g4horus/init`), such as `output_type` or `distance`. An example of available commands can be found in the file [batch_default.mac](../scripts/batch_default.mac).
 
 ### Commands in the macro file
+
+Default values for macro configuration: 
+
 ```sh
 # Optional. Specifies the output format of the simulation. Must be defined before init.
-/g4horus/output/type hist # Available options: [hist, ntuple, soco]. Default: hist
-
+/g4horus/output/type hist, ntuple # Available options: [hist, ntuple, soco].
 # Optional. Specifies the number of bins in the output histograms
-/g4horus/output/hist_bin_num 30000 # Default: 1
+/g4horus/output/hist_bin_num 1 # Default: 1
 
 # Optional. Specifies the minimal value of the output histograms
 /g4horus/output/hist_min 0. MeV # Default: 0 MeV
 
 # Optional. Specifies the maximal value of the output histograms
-/g4horus/output/hist_max 3. MeV # Default: 1 MeV
+/g4horus/output/hist_max 1. MeV # Default: 1 MeV
 
 # Required. Specifies the JSON file path of the input decay scheme. 
 /g4horus/gun/read_decay_scheme ../test/test.json # Relative or absolute path
@@ -124,22 +126,28 @@ Parameters like detector distances or particle energies are set by different com
 /g4horus/detector/distance 1.3 cm # Default: 1.3 cm
 
 # Optional. Specifies the type of the event generator. 
-/g4horus/gun/type cascade # Available options: [single, cascade, scattering]. Default: cascade
+/g4horus/gun/type cascade # Available options: [single, cascade, scattering].
+
+# Optional. Specifies the maximal time of particle generation.
+/g4horus/gun/time_max 0. second
+
+# Optional. Specifies the minimal time of particle generation.
+/g4horus/gun/time_min 0. second
 
 # Optional. Specifies the physics list.
-/g4horus/physics_list QGSP_BERT_EMV # Available options: see below. Default: QGSP_BERT_EMV
+/g4horus/physics_list Shielding # Available options: see below.
 
 # Required. initialization
 /g4horus/init
 
-# Optional. Specifies the energy (keV) of the decay. Don't specify the unit.
-/g4horus/gun/energy 919.337 # Default: 0.
+# Optional. Specifies the energy (keV) of the decay. Do not specify the unit.
+/g4horus/gun/energy 0.
 
 # Optional. emits all decays of a cascade if true and emit a single decay if false.
 /g4horus/gun/cascade true # Default: true
 
-# Show the progress per number of events.
-/run/printProgress 100
+# Optional. Show the progress per number of events.
+/run/printProgress 1
     
 # Optional. Set the output file name.
 /analysis/setFileName test.root # Default: hist.root

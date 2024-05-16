@@ -12,11 +12,11 @@ namespace G4Horus
 {
     enum class NTupleColumn
     {
-        time,
-        energy,
-        position_x,
-        position_y,
-        position_z,
+        time,       // seconds
+        energy,     // keV
+        position_x, // cm
+        position_y, // cm
+        position_z, // cm
         size,
         detector
     };
@@ -24,20 +24,29 @@ namespace G4Horus
     class RunActionNtuple : public G4UserRunAction
     {
       public:
-        explicit RunActionNtuple(const G4Horus::HistogramRunActionSetting* setting);
+        explicit RunActionNtuple(const G4Horus::RunActionSetting* setting, int verbose_level);
 
         void BeginOfRunAction(const G4Run* /*aRun*/) override;
         void EndOfRunAction(const G4Run* /*aRun*/) override;
         [[nodiscard]] auto GetColumnIdMap() const -> const auto& { return column_id_map_; }
+        [[nodiscard]] auto GetHistgramIdMap() const -> const auto& { return histogram_id_map_; }
+        [[nodiscard]] auto GetSettings() const -> const auto* { return setting_; }
 
       private:
-        const HistogramRunActionSetting* setting_ = nullptr;
+        int verbose_level_ = 0;
+        const RunActionSetting* setting_ = nullptr;
         G4GenericAnalysisManager* analysis_manager_ = G4AnalysisManager::Instance(); // no-owning
         std::unordered_map<NTupleColumn, int> column_id_map_{
             { NTupleColumn::time, 0 },       { NTupleColumn::energy, 0 },     { NTupleColumn::position_x, 0 },
             { NTupleColumn::position_y, 0 }, { NTupleColumn::position_z, 0 }, { NTupleColumn::detector, 0 },
             { NTupleColumn::size, 0 }
         };
+        std::unordered_map<std::string_view, int> histogram_id_map_;
+
+        // non-virtual functions:
+        void setup_ntuple(G4AnalysisManager* analysis_manager);
+        void setup_histogram(G4AnalysisManager* analysis_manager);
+        void setup_soco(G4AnalysisManager* analysis_manager);
     };
 } // namespace G4Horus
 

@@ -20,4 +20,6 @@ namespace G4Horus
         B3
     };
 
+    constexpr auto DEFAULT_PHYSICS_LIST = std::string_view{ "QGSP_BERT_EMV" };
+
 } // namespace G4Horus

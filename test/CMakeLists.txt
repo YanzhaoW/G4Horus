@@ -12,7 +12,7 @@ add_executable(
 
 target_link_libraries(G4HorusUnitTests PRIVATE gtest::gtest G4Horus::cascade)
 
-add_test(CloverTest ${CMAKE_BINARY_DIR}/G4Horus -t 4 -m ${CMAKE_SOURCE_DIR}/scripts/batch_default.mac)
+add_test(CloverTest ${CMAKE_BINARY_DIR}/G4Horus -t 4 -m ${CMAKE_SOURCE_DIR}/test/test.mac)
 set_tests_properties(CloverTest PROPERTIES TIMEOUT "10000")
 
 add_test(UnitTest ${CMAKE_CURRENT_BINARY_DIR}/G4HorusUnitTests)

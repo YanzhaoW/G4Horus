@@ -32,7 +32,7 @@ namespace G4Horus
         output_type_ = std::make_unique<G4UIcmdWithAString>("/g4horus/output/type", this);
         output_type_->SetGuidance("Specify the output format.");
         output_type_->SetParameterName("type", true);
-        output_type_->SetDefaultValue("hist");
+        output_type_->SetDefaultValue("hist, ntuple");
         output_type_->AvailableForStates(G4State_PreInit);
 
         hist_bin_num_ = std::make_unique<G4UIcmdWithAnInteger>("/g4horus/output/hist_bin_num", this);
@@ -116,22 +116,22 @@ namespace G4Horus
 
         if (command == output_type_.get())
         {
-            app_->set_output_format(string_to_output_format(new_values));
+            app_->set_output_format(new_values);
         }
 
         if (command == hist_bin_num_.get())
         {
-            app_->get_hist_setting_ref().bin_num = hist_bin_num_->GetNewIntValue(new_values);
+            app_->set_hist_bin_num(hist_bin_num_->GetNewIntValue(new_values));
         }
 
         if (command == hist_max_.get())
         {
-            app_->get_hist_setting_ref().bin_max = hist_max_->GetNewDoubleValue(new_values);
+            app_->set_hist_max(hist_max_->GetNewDoubleValue(new_values));
         }
 
         if (command == hist_min_.get())
         {
-            app_->get_hist_setting_ref().bin_min = hist_min_->GetNewDoubleValue(new_values);
+            app_->set_hist_min(hist_min_->GetNewDoubleValue(new_values));
         }
 
         if (command == generator_file_name.get())
